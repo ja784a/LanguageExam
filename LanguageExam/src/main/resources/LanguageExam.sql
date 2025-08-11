@@ -22,3 +22,14 @@ place varchar(50) not null,
 comments varchar(100), 
 cancel bigint not null default 0 ) 
 
+create table infos (
+id bigint not null primary key, 
+post_date date not null, 
+title varchar(50) not null, 
+content varchar(500) not null )
+
+alter table infos modify column id bigint not null auto_increment;
+
+create table places (
+id bigint not null primary key auto_increment, 
+place varchar(50) not null )

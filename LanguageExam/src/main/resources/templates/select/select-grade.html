@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" 
+ layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title th:text="${subject.subject} + ' ' + #{select-grade}"></title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row p-1">
+				<div class="col-3" style="background-color: darkblue;">
+					<h5 th:text="${subject.subject}" class="text-light"></h5>
+				</div>
+				<div class="col-3" style="background-color: darkblue;">
+					<div class="text-light" th:text="${grades}"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3">
+					<h3 th:text="#{exam-book}"></h3>
+				</div>
+			</div>
+			<div class="row p-2">
+				<div class="col-3">
+					<div th:text="#{select-grade-msg}"></div>
+				</div>
+			</div>
+			<form th:action="@{/select-grade}" method="post" th:object="${selectGradeForm}">
+				<div class="row pt-2 pb-5">
+					<div class="col-3">
+						<select th:field="*{gradeId}">
+							<option th:each="grade:${gradesList}" th:text="${grade.grade}" th:value="${grade.id}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="row pb-3 justify-content-end">
+					<div class="col-4">
+						<input type="hidden" th:field="*{subjectId}">
+						<input type="submit" th:value="#{select-place-btn}" class="btn btn-primary rounded-pill">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

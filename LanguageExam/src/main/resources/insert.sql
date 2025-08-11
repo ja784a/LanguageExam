@@ -8,6 +8,11 @@ insert into grdes (grade)
 ('中級'), 
 ('上級') 
 
+insert into places (place) values 
+('東京'), 
+('名古屋'), 
+('大阪') 
+
 insert into fees (subject_id, grade_id, fee) values 
 (1, 1, 5000), 
 (1, 2, 6000), 
@@ -15,3 +20,11 @@ insert into fees (subject_id, grade_id, fee) values
 
 insert into exam_infos (suject_id, grade_id, exam_date, place) values 
 (1, 1, 2025-08-01, '大阪') 
+
+insert into infos (post_date, title, content) values 
+(curdate(), 'テスト', 'テスト'), 
+(curdate(), 'テスト', 'テスト'), 
+(curdate(), 'テスト', 'テスト'), 
+(curdate(), 'テスト', 'テスト'),
+(curdate(), 'テスト', 'テスト'), 
+(curdate(), 'テスト', 'テスト')

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org " xmlns:layout="http://ultraq.net.nz" 
+ layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title th:text="${subject.subject} + ' ' + #{exam-details}"></title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row p-1">
+				<div class="col-3" style="background-color: darkblue;">
+					<h4 th:text="${subject.subject}" class="text-light"></h4>
+				</div>
+				<div class="col-3" style="background-color: darkblue;">
+					<div th:text="${grades}" class="text-light"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<div th:text="#{place-date-fee}"></div>
+				</div>
+			</div>
+			<div th:each="grade:${gradesList}" class="p-2">
+				<div class="row p-2">
+					<div class="col-1">
+						<h5 th:text="${grade.grade}"></h5>
+					</div>
+					<div class="col-4">
+						<div th:text="#{fee-msg}"></div>
+					</div>
+				</div>
+				<div th:each="place:${places}">
+					<div class="row">
+						<div class="col-4" style="background-color: darkblue;">
+							<details>
+								<summary th:text="${place.place}" class="text-light"></summary>
+							</details>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

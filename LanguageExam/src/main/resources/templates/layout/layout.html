@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http;//www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.1/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/popper/2.9.3/umd/popper.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/5.3.1/js/bootstrap.min.js}" defer></script>
 </head>
 <body>
+	<!-- ヘッダー -->
+	<header>
+		<div class="container-fluid">
+			<div class="row" style="background-color: darkblue;height: 50px;">
+				<div class="col">
+					<div class="navbar-brand text-light" th:text="#{logo}" style="font-size: 35px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="conatainer-fluid">
+			<div class="row" style="background-color: darkgrey;">
+				<div class="col">
+					<nav class="navbar p-0">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
+							</li>
+						</ul>
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- ヘッダーここまで -->
+	
+	<!-- メインコンテンツ -->
+	<main>
+		<div layout:fragment="content"></div>
+	</main>
+	<!-- メインコンテンツここまで -->
+	
+	<!-- フッター -->
+	<footer style="background-color: darkgrey;">
+		<span class="nav-brand" th:text="#{logo}"></span>
+	</footer>
+	<!-- フッターここまで -->
 
 </body>
 </html>

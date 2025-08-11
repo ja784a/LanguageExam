@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+ layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row">
+				<div class="row">
+					<h2 th:text="#{exam-guide-header}"></h2>
+				</div>
+			</div>
+			<div th:each="subject:${subjects}">
+				<div class="row pt-1">
+					<div class="col-4" style="background-color: darkblue;">
+						<h1 th:text="${subject.subject}" class="text-light"></h1>
+					</div>
+					<div class="col-4" style="background-color: darkblue;">
+						<h3 th:text="${grades}" class="text-light"></h3>
+					</div>
+					<div class="col-4">
+						<a th:href="@{/select-grade/{id} (id = ${subject.id})}" th:text="#{book}" style="font-size: 30px;" class="text-large text-light btn bg-primary rounded-pill"></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<a th:href="@{/exam-details/{id} (id = ${subject.id})}" th:text="#{exam-details-link}" style="font-size: 30px;"></a>
+					</div>
+				</div>
+			</div>
+			<div class="row pt-3">
+				<div class="col-3">
+					<h3 th:text="#{infos}"></h3>
+				</div>
+				<div class="container m-2 border border-dark" style="width: 700px; height: 200px; overflow-y: scroll;">
+					<div th:each="info:${infos}">
+						<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
+						<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
