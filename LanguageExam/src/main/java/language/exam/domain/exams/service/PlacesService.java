@@ -7,4 +7,6 @@ import language.exam.domain.exams.model.Places;
 public interface PlacesService {
 	
 	public List<Places> getAllPlaces();
+	
+	public Places getPlace(Integer id);
 }

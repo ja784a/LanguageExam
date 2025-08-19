@@ -10,4 +10,6 @@ import language.exam.domain.exams.model.Places;
 public interface PlacesMapper {
 	
 	public List<Places> selectAllPlaces();
+	
+	public Places selectPlace(Integer id);
 }

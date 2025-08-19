@@ -35,6 +35,9 @@
 					</div>
 				</div>
 				<div class="row pb-3 justify-content-end">
+					<div class="col-2">
+						<a th:href="@{/exams-guide}" th:text="#{back}"></a>
+					</div>
 					<div class="col-4">
 						<input type="hidden" th:field="*{subjectId}">
 						<input type="submit" th:value="#{select-place-btn}" class="btn btn-primary rounded-pill">

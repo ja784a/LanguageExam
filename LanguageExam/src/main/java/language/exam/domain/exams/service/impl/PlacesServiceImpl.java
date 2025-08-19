@@ -18,4 +18,8 @@ public class PlacesServiceImpl implements PlacesService {
 	public List<Places> getAllPlaces() {
 		return mapper.selectAllPlaces();
 	}
+	
+	public Places getPlace(Integer id) {
+		return mapper.selectPlace(id);
+	}
 }

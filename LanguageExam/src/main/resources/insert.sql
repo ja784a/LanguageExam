@@ -18,8 +18,8 @@ insert into fees (subject_id, grade_id, fee) values
 (1, 2, 6000), 
 (1, 3, 
 
-insert into exam_infos (suject_id, grade_id, exam_date, place) values 
-(1, 1, 2025-08-01, '大阪') 
+insert into exam_infos (subject_id, grade_id, exam_date, place_id) values 
+(1, 1, '2025-11-01', 3) 
 
 insert into infos (post_date, title, content) values 
 (curdate(), 'テスト', 'テスト'), 

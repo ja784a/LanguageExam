@@ -13,14 +13,14 @@ grade_id bigint not null,
 fee bigint not null ) 
 
 create table exam_infos (
-id bigint not null primary key, 
+id bigint not null auto_increment primary key, 
 subject_id bigint not null, 
 grade_id bigint not null, 
 exam_date date not null, 
 old_date date, 
-place varchar(50) not null, 
+place_id bigint not null, 
 comments varchar(100), 
-cancel bigint not null default 0 ) 
+cancel tinyint not null default 0 ) 
 
 create table infos (
 id bigint not null primary key, 

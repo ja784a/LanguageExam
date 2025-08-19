@@ -26,15 +26,18 @@
 					<div th:text="#{select-place-msg}"></div>
 				</div>
 			</div>
-			<form th:action="@{/select-grade}" method="post" th:object="${selectPlaceForm}">
+			<form th:action="@{/select-place}" method="post" th:object="${selectPlaceForm}">
 				<div class="row pt-2 pb-5">
 					<div class="col-3">
-						<select th:field="*{place}">
+						<select th:field="*{placeId}">
 							<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
 						</select>
 					</div>
 				</div>
 				<div class="row pb-3 justify-content-end">
+					<div class="col-3">
+						<a th:href="@{/select-grade/{id} (id = ${subject.id})}" th:text="#{back-select-grade}"></a>
+					</div>
 					<div class="col-4">
 						<input type="submit" th:value="#{select-date-btn}" class="btn btn-primary rounded-pill">
 					</div>

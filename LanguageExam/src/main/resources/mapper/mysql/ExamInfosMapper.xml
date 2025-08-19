@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="language.exam.repository.ExamInfosMapper">
+	<resultMap type="language.exam.domain.exams.model.ExamInfos" id="examInfos">
+		<id column="id" property="id"></id>
+		<result column="subject_id" property="subjectId"></result>
+		<result column="grade_id" property="gradeId"></result>
+		<result column="exam_date" property="examDate"></result>
+		<result column="old_date" property="oldDate"></result>
+		<result column="place_id" property="placeId"></result>
+		<result column="comments" property="comments"></result>
+		<result column="cancel" property="cancel"></result>
+		<association property="subjects" resultMap="language.exam.repository.SubjectsMapper.subjects"></association>
+		<association property="grades" resultMap="language.exam.repository.GradesMapper.grades"></association>
+		<association property="places" resultMap="language.exam.repository.PlacesMapper.places"></association>
+	</resultMap>
+	<select id="selectExamInfosForUsers" resultMap="examInfos">
+		select * from exam_infos 
+		where exam_date &gt; curdate() + interval 1 month  
+		and cancel = 0 
+	</select>
+</mapper>

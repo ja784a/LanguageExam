@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="language.exam.repository.SubjectsMapper">
+	<resultMap type="language.exam.domain.exams.model.Subjects" id="subjects">
+		<id column="id" property="id"></id>
+		<result column="subject" property="subject"></result>
+	</resultMap>
 	<select id="selectAllSubjects" resultType="Subjects">
 		select * from subjects 
 	</select>
