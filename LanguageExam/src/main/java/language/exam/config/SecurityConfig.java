@@ -33,7 +33,7 @@ public class SecurityConfig {
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.requestMatchers(mvc.pattern("/register-account")).permitAll()
 				.requestMatchers(mvc.pattern("/exams-guide")).permitAll()
-				.requestMatchers(mvc.pattern("/exam-detail")).permitAll()
+				.requestMatchers(mvc.pattern("/exam-details/{*}")).permitAll()
 				.requestMatchers(mvc.pattern("/info-details/{*}")).permitAll()
 				.anyRequest().authenticated()
 		);

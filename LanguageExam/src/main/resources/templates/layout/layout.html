@@ -26,11 +26,23 @@
 								<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
 							</li>
 						</ul>
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
-							</li>
-						</ul>
+						<div sec:authorize="isAnonymous()">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
+								</li>
+							</ul>
+						</div>
+						<div sec:authorize="hasRole('USER')">
+							<ul class="nav">
+								<a class="nav-link text-dark" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
+							</ul>
+							<ul class="nav justify-content-end">
+								<li class="nav-item dropdown">
+									<a class="nav-link droppdown-togle text-black" id="navbarDroppdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
+								</li>
+							</ul>
+						</div>
 					</nav>
 				</div>
 			</div>

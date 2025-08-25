@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="language.exam.repository.AccountsMapper">
+	<resultMap type="language.exam.domain.exams.model.Accounts" id="accounts">
+		<id column="id" property="id"></id>
+		<result column="name" property="name"></result>
+		<result column="mail" property="mail"></result>
+		<result column="pass" property="pass"></result>
+		<result column="pref" property="pref"></result>
+		<result column="city" property="city"></result>
+		<result column="town" property="towm"></result>
+		<result column="building" property="building"></result>
+	</resultMap>
+	<insert id="insertAccount">
+		insert into accounts (name, mail, pass, pref, city, town, building) values 
+		(#{name}, #{mail}, #{pass}, #{pref}, #{city}, #{town}, #{building}) 
+	</insert>
+	
+	<select id="countAccounts" resultType="int">
+		select count(*) from accounts 
+		where mail = #{mail} 
+	</select>
+	
+	<select id="selectAccount" resultMap="accounts">
+		select * from accounts 
+		where mail = #{mail} 
+	</select>
+</mapper>

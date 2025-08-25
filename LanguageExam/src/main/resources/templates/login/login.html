@@ -15,16 +15,21 @@
 				</div>
 			</div>
 			<form th:action="@{/login}" method="post">
+				<div class="mb-2 row justify-content-center">
+					<div class="col-sm-9">
+						<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger text-center"></div>
+					</div>
+				</div>
 				<div class="row p-5 justify-content-center">
 					<label th:text="#{mail}" class="form-label col-2 text-end" for="mail"></label>
 					<div class="col-7">
-						<input type="email" name="mail" class="form-control border-dark">
+						<input type="email" name="mail" class="form-control">
 					</div>
 				</div>
 				<div class="row p-5 justify-content-center">
 					<label th:text="#{pass}" class="form-label col-2 text-end" for="pass"></label>
 					<div class="col-7">
-						<input type="pass" name="pass" class="form-control border-dark">
+						<input type="password" name="pass" class="form-control">
 					</div>
 				</div>
 				<div class="row p-1 justify-content-end">
