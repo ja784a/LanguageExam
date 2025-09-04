@@ -9,7 +9,8 @@
 		<result column="pass" property="pass"></result>
 		<result column="pref" property="pref"></result>
 		<result column="city" property="city"></result>
-		<result column="town" property="towm"></result>
+		<result column="town" property="town"></result>
+		<result column="role" property="role"></result>
 		<result column="building" property="building"></result>
 	</resultMap>
 	<insert id="insertAccount">
@@ -26,4 +27,15 @@
 		select * from accounts 
 		where mail = #{mail} 
 	</select>
+	
+	<update id="updateAccount">
+		update accounts 
+		set name = #{name}, 
+		mail = #{mail}, 
+		pref = #{pref}, 
+		city = #{city}, 
+		town = #{town}, 
+		building = #{building}, 
+		where id = #{id} 
+	</update>
 </mapper>

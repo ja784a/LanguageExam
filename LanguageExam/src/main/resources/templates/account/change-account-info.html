@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http;//ultraq.net.nz/thymeleaf/layout"
+ layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{change-account-info}"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row">
+				<div class="col">
+					<h2 th:text="#{change-account-info}"></h2>
+				</div>
+				<form th:action="@{/change-account-info}" method="post" th:object="${changeAccountInfoForm}">
+					<div class="row p-3 justify-content-center">
+						<label th:text="#{name}" class="form-label col-3 text-end" for="name"></label>
+						<div class="col-7">
+							<input type="text" th:field="*{name}" class="form-control" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{name}"></div>
+						</div>
+					</div>
+					<div class="row p-3 justify-content-center">
+						<label th:text="#{mail}" class="form-label col-3 text-end" for="mail"></label>
+						<div class="col-7">
+							<input type="email" th:field="*{mail}" class="form-control" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{mail}"></div>
+						</div>
+					</div>
+					<div class="row pt-3 justify-content-center">
+						<label th:text="#{address}" class="form-label col-3 text-end"></label>
+						<div class="col-7"></div>
+					</div>
+					<div class="row pb-3 justify-content-center">
+						<label th:text="#{pref}" class="form-label col-3 text-end" for="pref"></label>
+						<div class="col-7">
+							<input type="text" th:field="*{pref}" class="form-control" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{pref}"></div>
+						</div>
+					</div>
+					<div class="row p-3 justify-content-center">
+						<label th:text="#{city}" class="form-label col-3 text-end" for="city"></label>
+						<div class="col-7">
+							<input type="text" th:field="*{city}" class="form-control" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{city}"></div>
+						</div>
+					</div>
+					<div class="row p-3 justify-content-center">
+						<label th:text="#{town}" class="form-label col-3 text-end" for="town"></label>
+						<div class="col-7">
+							<input type="text" th:field="*{town}" class="form-control" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{town}"></div>
+						</div>
+					</div>
+					<div class="row p-3 justify-content-center">
+						<label th:text="#{building}" class="form-label col-3 text-end" for="building"></label>
+						<div class="col-7">
+							<input type="text" th:field="*{building}" class="form-control" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{building}"></div>
+						</div>
+					</div>
+					<div class="row p-2 justify-content-end">
+						<div class="col-4">
+							<a th:href="@{/change-password}" th:text="#{change-password-btn}"></a>
+						</div>
+						<div class="col-3">
+							<input type="submit" th:value="#{change-account-info-btn}" class="btn btn-primary text-light rounded-pill">
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http;//www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http;//www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.1/css/bootstrap.min.css}">
-	<script th:src="@{/webjars/popper/2.9.3/umd/popper.min.js}" defer></script>
+	<script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/5.3.1/js/bootstrap.min.js}" defer></script>
 </head>
 <body>
@@ -18,32 +19,58 @@
 			</div>
 		</div>
 		<div class="conatainer-fluid">
-			<div class="row" style="background-color: darkgrey;">
-				<div class="col">
-					<nav class="navbar p-0">
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
-							</li>
-						</ul>
-						<div sec:authorize="isAnonymous()">
+			<div sec:authorize="isAnonymous()">
+				<div class="row" style="background-color: darkgrey;">
+					<div class="col">
+						<nav class="navbar p-0">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
+								</li>
+							</ul>
 							<ul class="nav">
 								<li class="nav-item">
 									<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
 								</li>
 							</ul>
-						</div>
-						<div sec:authorize="hasRole('USER')">
-							<ul class="nav">
-								<a class="nav-link text-dark" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
-							</ul>
-							<ul class="nav justify-content-end">
+						</nav>
+					</div>
+				</div>
+			</div>
+			<div sec:authrize="isauthenticated()">
+				<div class="row" style="background-color: darkgrey;">
+					<div class="col">
+						<nav class="navbar p-0">
+							<div sec:authorize="hasRole('USER')">
+								<ul class="nav">
+									<li class="nav-item">
+										<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
+									</li>
+								</ul>
+							</div>
+							<div sec:authorize="hasRole('USER')">
+								<ul class="nav justify-content-end">
+									<li class="nav-item">
+										<a class="nav-link text-dark" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle text-black" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											<li><a th:href="@{/account-info}" class="dropdown-item nav-link text-dark" th:text="#{account-info}"></a></li>
+											<form th:action="@{/logout}" method="post">
+												<li><button class="dropdown-item btn-link" type="submit" th:text="#{logout}"></button></li>
+											</form>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div sec:authorize="hasRole('ADMIN')">
 								<li class="nav-item dropdown">
 									<a class="nav-link droppdown-togle text-black" id="navbarDroppdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
 								</li>
-							</ul>
-						</div>
-					</nav>
+							</div>
+						</nav>
+					</div>
 				</div>
 			</div>
 		</div>

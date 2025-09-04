@@ -8,4 +8,6 @@ public interface AccountsService {
 	public boolean isNotRegisteredMail(String mail);
 	
 	public Accounts getAccount(String mail);
+	
+	public void updateAccount(Accounts account);
 }

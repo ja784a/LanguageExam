@@ -19,5 +19,25 @@
 		select * from exam_infos 
 		where exam_date &gt; curdate() + interval 1 month  
 		and cancel = 0 
+		and subject_id = #{subjectId} 
+		and grade_id = #{gradeId} 
+		and place_id = #{placeId} 
+	</select>
+	
+	<select id="selectExamInfo" resultMap="examInfos">
+		select * from exam_infos 
+		join subjects 
+		on subject_id = subjects.id 
+		join grades 
+		on grade_id = grades.id 
+		join places 
+		on place_id = places.id 
+		where exam_infos.id = #{examId}  
+	</select>
+	
+	<select id="countExamInfos" resultType="int">
+		select count(*) from exam_infos 
+		where id = #{examId} 
+		and exam_date &gt; curdate() + interval 1 month  
 	</select>
 </mapper>

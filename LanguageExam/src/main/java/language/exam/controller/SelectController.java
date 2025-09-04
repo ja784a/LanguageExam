@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +18,11 @@ import language.exam.domain.exams.model.Grades;
 import language.exam.domain.exams.model.Places;
 import language.exam.domain.exams.model.Subjects;
 import language.exam.domain.exams.service.ExamInfosService;
+import language.exam.domain.exams.service.FeesService;
 import language.exam.domain.exams.service.GradesService;
 import language.exam.domain.exams.service.PlacesService;
 import language.exam.domain.exams.service.SubjectsService;
+import language.exam.form.GroupOrder;
 import language.exam.form.SelectExamDateForm;
 import language.exam.form.SelectGradeForm;
 import language.exam.form.SelectPlaceForm;
@@ -37,6 +41,9 @@ public class SelectController {
 	
 	@Autowired
 	private ExamInfosService examInfosService;
+	
+	@Autowired
+	private FeesService feesService;
 	
 	@GetMapping("/select-grade/{id}")
 	public String getSelectGrade(@PathVariable Integer id, @ModelAttribute SelectGradeForm selectGradeForm, Model model) {
@@ -67,7 +74,7 @@ public class SelectController {
 	}
 	
 	@GetMapping("/select-place")
-	public String getSelectPlace(HttpSession session, @ModelAttribute SelectPlaceForm selectPlaceForm, Model model) {
+	public String getSelectPlace(HttpSession session, @ModelAttribute SelectPlaceForm selectPlaceForm,Model model) {
 		Integer subjectId = (Integer) session.getAttribute("subjectId");
 		Subjects subject = subjectsService.getSubject(subjectId);
 		model.addAttribute("subject", subject);
@@ -103,9 +110,19 @@ public class SelectController {
 		Places place = placesService.getPlace(placeId);
 		model.addAttribute("place", place);
 		
-		List<ExamInfos> examDates = examInfosService.getExamInfosForUsers();
+		List<ExamInfos> examDates = examInfosService.getExamInfosForUsers(subjectId, gradeId, placeId);
 		model.addAttribute("examDates", examDates);
 		
 		return "select/select-exam-date";
+	}
+	
+	@PostMapping("/select-exam-date")
+	public String postSelectExamDate(HttpSession session, @Validated(GroupOrder.class) SelectExamDateForm selectExamDateForm, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return getSelectExamDate(session, selectExamDateForm, model);
+		}
+		session.setAttribute("examId", selectExamDateForm.getExamId());
+		
+		return "redirect:/confirm-booking";
 	}
 }

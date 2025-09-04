@@ -8,5 +8,9 @@ import language.exam.domain.exams.model.ExamInfos;
 
 @Mapper
 public interface ExamInfosMapper {
-	public List<ExamInfos> selectExamInfosForUsers();
+	public List<ExamInfos> selectExamInfosForUsers(Integer subjectId, Integer gradeId, Integer placeId);
+	
+	public ExamInfos selectExamInfo(Integer examId);
+	
+	public int countExamInfos(Integer examId);
 }

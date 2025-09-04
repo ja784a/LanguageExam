@@ -3,12 +3,11 @@ package language.exam.domain.exams.model;
 import lombok.Data;
 
 @Data
-public class Bookings {
+public class Fees {
 	private Integer id;
-	private Integer accountId;
-	private Integer examId;
-	private ExamInfos examInfos;
+	private Integer subjectId;
+	private Integer gradeId;
+	private Integer fee;
 	private Subjects subjects;
 	private Grades grades;
-	private Places places;
 }

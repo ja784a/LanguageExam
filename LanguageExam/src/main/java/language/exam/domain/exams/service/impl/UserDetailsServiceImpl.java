@@ -9,11 +9,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import language.exam.domain.exams.model.Accounts;
 import language.exam.domain.exams.service.AccountsService;
 import language.exam.security.CustomUserDetails;
-
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
@@ -31,12 +32,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		String password = account.getPass();
 		Integer id = account.getId();
 		String name = account.getName();
-		String role = "USER";
-		/*if (account.getRole() == 0) {
-			role = "USER";
+		String role = "";
+		if (account.getRole() == 0) {
+			role += "ROLE_USER";
 		} else {
-			role = "ADMIN";
-		} */
+			role += "ROLE_ADMIN";
+		}
 		GrantedAuthority authority = new SimpleGrantedAuthority(role);
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(authority);

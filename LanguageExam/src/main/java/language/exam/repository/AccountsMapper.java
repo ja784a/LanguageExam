@@ -11,4 +11,6 @@ public interface AccountsMapper {
 	public int countAccounts(String mail);
 	
 	public Accounts selectAccount(String mail);
+	
+	public void updateAccount(Accounts account);
 }

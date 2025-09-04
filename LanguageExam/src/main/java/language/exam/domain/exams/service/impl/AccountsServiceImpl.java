@@ -32,4 +32,8 @@ public class AccountsServiceImpl implements AccountsService {
 	public Accounts getAccount(String mail) {
 		return mapper.selectAccount(mail);
 	}
+	
+	public void updateAccount(Accounts account) {
+		mapper.updateAccount(account);
+	}
 }

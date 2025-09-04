@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="language.exam.repository.BookingsMapper">
+	<resultMap type="language.exam.domain.exams.model.Bookings" id="bookings">
+		<id column="id" property="id"></id>
+		<result column="account_id" property="accountId"></result>
+		<result column="exam_id" property="examId"></result>
+		<association property="examInfos" resultMap="language.exam.repository.ExamInfosMapper.examInfos"></association>
+		<association property="subjects" resultMap="language.exam.repository.SubjectsMapper.subjects"></association>
+		<association property="grades" resultMap="language.exam.repository.GradesMapper.grades"></association>
+		<association property="places" resultMap="language.exam.repository.PlacesMapper.places"></association>
+	</resultMap>
+	
+	<insert id="insertBooking">
+		insert into bookings (account_id, exam_id) values 
+		(#{accountId}, #{examId})
+	</insert>
+	
+	<select id="selectBookings" resultMap="bookings">
+		select * from bookings 
+		join exam_infos 
+		on exam_id = exam_infos.id 
+		join subjects 
+		on exam_infos.subject_id = subjects.id 
+		join grades 
+		on exam_infos.grade_id = grades.id 
+		join places 
+		on exam_infos.place_id = places.id 
+		where exam_infos.exam_date &gt;= curdate() 
+		and account_id = #{accountId} 
+	</select>
+	
+	<select id="countBooking" resultType="int">
+		select count(exam_date) from bookings 
+		join exam_infos 
+		on exam_id = exam_infos.id 
+		where exam_date = #{examDate} 
+		and account_id = #{accountId} 
+	</select>
+	
+	<delete id="deleteBooking">
+		delete from bookings 
+		where account_id = #{accountId} 
+		and exam_id = #{examId} 
+	</delete>
+</mapper>

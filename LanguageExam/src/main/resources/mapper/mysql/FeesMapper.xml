@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="language.exam.repository.FeesMapper">
+	<resultMap type="language.exam.domain.exams.model.Fees" id="fees">
+		<id column="id" property="id"></id>
+		<result column="subject_id" property="subjectId"></result>
+		<result column="grade_id" property="gradeId"></result>
+		<result column="fee" property="fee"></result>
+		<association property="subjects" resultMap="language.exam.repository.SubjectsMapper.subjects"></association>
+		<association property="grades" resultMap="language.exam.repository.GradesMapper.grades"></association>
+	</resultMap>
+	<select id="selectFee" resultMap="fees">
+		select * from fees 
+		where subject_id = #{subjectId} 
+		and grade_id = #{gradeId} 
+	</select>
+</mapper>

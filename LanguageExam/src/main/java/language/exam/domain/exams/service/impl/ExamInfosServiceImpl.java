@@ -14,7 +14,19 @@ public class ExamInfosServiceImpl implements ExamInfosService {
 	@Autowired
 	private ExamInfosMapper mapper;
 	
-	public List<ExamInfos> getExamInfosForUsers() {
-		return mapper.selectExamInfosForUsers();
+	public List<ExamInfos> getExamInfosForUsers(Integer subjectId, Integer gradeId, Integer placeId) {
+		return mapper.selectExamInfosForUsers(subjectId, gradeId, placeId);
+	}
+	
+	public ExamInfos getExamInfo(Integer examId) {
+		return mapper.selectExamInfo(examId);
+	}
+	
+	public boolean isValidExamId(Integer examId) {
+		if (mapper.countExamInfos(examId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

@@ -44,3 +44,14 @@ alter table infos modify column id bigint not null auto_increment;
 create table places (
 id bigint not null primary key auto_increment, 
 place varchar(50) not null )
+
+create table fees ( 
+id bigint not null auto_increment primary key, 
+subject_id bigint not null, 
+grade_id bigint not null, 
+fee bigint );
+
+create table bookings (
+id bigint not null auto_increment primary key, 
+account_id bigint not null, 
+exam_id bigint not null );

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+ layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{account-info}"></title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 700px;">
+			<div class="row">
+				<div class="col">
+					<h3 th:text="#{account-info}"></h3>
+				</div>
+			</div>
+			<div class="p-3 justify-content-center">
+				<div class="border border-dark" style="width: 600px; height: 200px; background-color: darkgray;">
+					<div class="row mt-5 justify-content-center">
+						<div class="col-2"></div>
+						<div class="col-10">
+							<h5 th:text="#{name} + ':' + ${account.name}"></h5>
+						</div>
+					</div>
+					<div class="row mt-2 justify-content-center">
+						<div class="col-2"></div>
+						<div class="col-10">
+							<h5 th:text="#{mail} + ':' + ${account.mail}"></h5>
+						</div>
+					</div>
+					<div class="row mt-2 justify-content-center">
+						<div class="col-2"></div>
+						<div class="col-10">
+							<h5 th:text="#{address} + ':' + ${account.pref} + ${account.city} + ${account.town} + ${account.building}"></h5>
+						</div>
+					</div>
+				</div>
+				<div class="row m-3 justify-content-end">
+					<div class="col-10">
+						<div class="text-end"><a th:href="@{/change-account-info}" th:text="#{change-account-info-btn}" class="btn btn-primary text-light"></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
