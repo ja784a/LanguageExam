@@ -22,4 +22,24 @@ public class InfosServiceImpl implements InfosService {
 	public Infos getInfo(Integer id) {
 		return mapper.selectInfo(id);
 	}
+	
+	public void addInfo(Infos info) {
+		mapper.insertInfo(info);
+	}
+	
+	public boolean isExistingId(Integer id) {
+		if (mapper.countInfos(id) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void updateInfo(Infos info) {
+		mapper.updateInfo(info);
+	}
+	
+	public void deleteInfo(Integer id) {
+		mapper.deleteInfo(id);
+	}
 }

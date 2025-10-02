@@ -12,4 +12,8 @@ public interface PlacesMapper {
 	public List<Places> selectAllPlaces();
 	
 	public Places selectPlace(Integer id);
+	
+	public int countPlaces(Integer placeId);
+	
+	public List<Integer> selectIds();
 }

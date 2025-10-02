@@ -22,4 +22,20 @@ public class GradesServiceImpl implements GradesService {
 	public Grades getGrade(Integer id) {
 		return mapper.selectGrade(id);
 	}
+	
+	public boolean isValidGradeId(Integer gradeId) {
+		if (mapper.countGrades(gradeId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public List<Integer> getIds() {
+		return mapper.selectIds();
+	}
+	
+	public List<Grades> getExamDates(Integer subjectId, List<Integer> gradeIds, List<Integer> placeIds) {
+		return mapper.selectExamDates(subjectId, gradeIds, placeIds);
+	}
 }

@@ -24,7 +24,7 @@ public class BookingsServiceImpl implements BookingsService {
 	}
 	
 	public boolean isNotDuplicatedDate(Date examDate, Integer accountId) {
-		if (mapper.countBooking(examDate, accountId) == 0) {
+		if (mapper.countBookings(examDate, accountId) == 0) {
 			return true;
 		} else {
 			return false;
@@ -33,5 +33,13 @@ public class BookingsServiceImpl implements BookingsService {
 	
 	public void deleteBooking(Integer accountId, Integer examId) {
 		mapper.deleteBooking(accountId, examId);
+	}
+	
+	public boolean isInCapacity(Integer examId) {
+		if (mapper.countBookingsWithExamId(examId) < 5) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

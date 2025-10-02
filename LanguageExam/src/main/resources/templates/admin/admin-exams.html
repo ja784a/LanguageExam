@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://lutraq.net.nz/thymeleaf/layout" 
+ layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{admin-exams}"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row mt-2 justify-content-center">
+				<div class="col-7">
+					<h3 class="pt-1" th:text="#{admin-exams}"></h3>
+				</div>
+				<div class="col-3">
+					<a th:href="@{/add-exam-for-admin}" th:text="#{add-exam-btn}" class="btn btn-primary text-light"></a>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-10 border border-dark">
+					<div th:each="examInfo, stat :${examInfos}">
+						<div class="row border border-dark" th:classappend="${stat.index % 2 == 0} ?  'bg-secondary' : ' '">
+							<div class="col-8">
+								<h5 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade} + ' ' + ${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')} + ' ' + ${examInfo.places.place}"></h5>
+							</div>
+							<div class="col-2" th:if="${examInfo.cancel == 0}">
+								<a th:href="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" th:text="#{change-date-for-admin}" class="p-0 btn btn-primary text-lignt"></a>
+							</div>
+							<div class="col-2" th:if="${examInfo.cancel == 0}">
+								<a th:href="@{/cancel-exam-for-admin/{id} (id = ${examInfo.id})}" th:text="#{cancel-exam-for-admin}" class="p-0 btn btn-danger text-light"></a>
+							</div>
+							<div class="col-4" th:if="${examInfo.cancel != 0}">
+								<h5 th:text="#{cancel-exam-for-admin}" class="text-danger text-end"></h5>
+							</div>
+							<dvi class="col">
+								<div th:text="${examInfo.comments}" class="text-danger"></div>
+							</dvi>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<nav aria-label="pagination">
+						<ul class="pagination">
+							<li class="page-item bg-light">
+								<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.getNumber()} - 1)}" aria-label="前へ" th:classappend="${resultPage.getNumber() <= 0} ? 'disabled'">
+									<span aria-hidden="true">&lsaquo;</span>
+									<span class="visually-hidden">前へ</span>
+								</a>
+							</li>
+							<li th:each="i:${#numbers.sequence(0, resultPage.getTotalPages() - 1)}" class="page-item bg-light">
+								<span th:if="i == ${resultPage.getNumber()}"><span th:text="${i}"></span></span>
+								<a th:if="i != ${resultPage.getNumber()}" class="page-link" th:href="@{/admin-exams-for-admin (page = ${i})}" th:classappend="${resultPage.getNumber() == i} ? 'bg-primary text-light disabled'">
+									<span th:text="${i} + 1"></span>
+								</a>
+							</li>
+							<li class="page-item bg-light">
+								<a class="page-link" th:href="@{/admin-exams-for-admin (page = ${resultPage.getNumber()} + 1)}" aria-label="次へ" th:classappend="${resultPage.getNumber() == resultPage.getTotalPages() - 1} ? 'disabled'">
+									<span aria-hidden="true">&rsaquo;</span>
+									<span class="visually-hidden">次へ</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

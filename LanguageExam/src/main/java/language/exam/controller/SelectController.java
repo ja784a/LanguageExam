@@ -65,8 +65,12 @@ public class SelectController {
 		return "select/select-grade";
 	}
 	
-	@PostMapping("/select-grade")
-	public String postSelectGrade(HttpSession session, SelectGradeForm selectGradeForm) {
+	@PostMapping("/select-grade/{id}")
+	public String postSelectGrade(HttpSession session, @Validated SelectGradeForm selectGradeForm, BindingResult result , @PathVariable("id") Integer id, Model model) {
+		if (result.hasErrors()) {
+			
+			return getSelectGrade(id, selectGradeForm, model);
+		}
 		session.setAttribute("subjectId", selectGradeForm.getSubjectId());
 		session.setAttribute("gradeId", selectGradeForm.getGradeId());
 		
@@ -90,7 +94,10 @@ public class SelectController {
 	}
 	
 	@PostMapping("/select-place")
-	public String postSelectPlace(HttpSession session, @ModelAttribute SelectPlaceForm selectPlaceForm, Model model) {
+	public String postSelectPlace(HttpSession session, @ModelAttribute @Validated SelectPlaceForm selectPlaceForm, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return getSelectPlace(session, selectPlaceForm, model);
+		}
 		session.setAttribute("placeId", selectPlaceForm.getPlaceId());
 		
 		return "redirect:/select-exam-date";

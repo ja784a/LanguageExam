@@ -35,7 +35,19 @@
 		pref = #{pref}, 
 		city = #{city}, 
 		town = #{town}, 
-		building = #{building}, 
+		building = #{building} 
+		where id = #{id} 
+	</update>
+	
+	<select id="countAccountsExceptLoginUser" resultType="int">
+		select count(*) from accounts 
+		where mail = #{mail}
+		and id != #{id}
+	</select>
+	
+	<update id="updatePassword">
+		update accounts 
+		set pass = #{pass} 
 		where id = #{id} 
 	</update>
 </mapper>

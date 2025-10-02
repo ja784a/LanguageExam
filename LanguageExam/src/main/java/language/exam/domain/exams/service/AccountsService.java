@@ -10,4 +10,8 @@ public interface AccountsService {
 	public Accounts getAccount(String mail);
 	
 	public void updateAccount(Accounts account);
+	
+	public boolean isNotRegisteredEmailExceptLoginUser(String mail, Integer id);
+	
+	public void updatePassword(Accounts account);
 }

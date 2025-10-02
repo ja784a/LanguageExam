@@ -31,7 +31,7 @@
 		and account_id = #{accountId} 
 	</select>
 	
-	<select id="countBooking" resultType="int">
+	<select id="countBookings" resultType="int">
 		select count(exam_date) from bookings 
 		join exam_infos 
 		on exam_id = exam_infos.id 
@@ -44,4 +44,9 @@
 		where account_id = #{accountId} 
 		and exam_id = #{examId} 
 	</delete>
+	
+	<select id="countBookingsWithExamId" resultType="int">
+		select count(*) from bookings 
+		where exam_id = #{examId} 
+	</select>
 </mapper>

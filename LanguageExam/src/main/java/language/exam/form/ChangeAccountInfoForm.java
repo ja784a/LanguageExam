@@ -3,6 +3,7 @@ package language.exam.form;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import language.exam.annotation.NotRegisteredEmailExceptLoginUser;
 import lombok.Data;
 
 @Data
@@ -13,6 +14,7 @@ public class ChangeAccountInfoForm {
 	@Size(max = 50)
 	private String name;
 	
+	@NotRegisteredEmailExceptLoginUser
 	@NotBlank
 	@Email
 	@Size(max = 256)

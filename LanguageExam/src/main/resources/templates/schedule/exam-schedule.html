@@ -19,6 +19,13 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-10 border border-dark" style="height: 200px; overflow-y: scroll; ">
+					<div th:if="${bookings.size == 0}">
+						<div class="row justify-content-center">
+							<div class="col-6">
+								<div th:text="#{no-exam-msg}" class="m-5"></div>
+							</div>
+						</div>
+					</div>
 					<div th:each="booking:${bookings}">
 						<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0}">
 							<div class="row border borer-dark" style="background-color: darkgrey;">	

@@ -21,7 +21,7 @@
 					<div th:text="#{place-date-fee}"></div>
 				</div>
 			</div>
-			<div th:each="grade:${gradesList}" class="p-2">
+			<div th:each="grade:${gradeList}" class="p-2">
 				<div class="row p-2">
 					<div class="col-1">
 						<h5 th:text="${grade.grade}"></h5>
@@ -30,11 +30,12 @@
 						<div th:text="#{fee-msg}"></div>
 					</div>
 				</div>
-				<div th:each="place:${places}">
+				<div th:each="place:${placeList}">
 					<div class="row">
-						<div class="col-4" style="background-color: darkblue;">
+						<div class="col-4">
 							<details>
-								<summary th:text="${place.place}" class="text-light"></summary>
+								<summary th:text="${place.place}" class="text-light" style="background-color: darkblue;"></summary>
+								<div th:each="date:${examDates}" th:text="${#dates.format(date.examDate, 'yyyy年MM月dd日(E)')}" style="background-color: darkgrey;"></div>
 							</details>
 						</div>
 					</div>

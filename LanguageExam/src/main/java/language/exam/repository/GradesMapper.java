@@ -12,4 +12,10 @@ public interface GradesMapper {
 	public List<Grades> selectAllGrades();
 	
 	public Grades selectGrade(Integer id);
+	
+	public int countGrades(Integer gradeId);
+	
+	public List<Integer> selectIds();
+	
+	public List<Grades> selectExamDates(Integer subjectId, List<Integer> gradeIds, List<Integer> placeIds);
 }

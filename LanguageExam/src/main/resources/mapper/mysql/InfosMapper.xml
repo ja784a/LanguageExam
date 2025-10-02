@@ -10,4 +10,26 @@
 		select * from infos 
 		where id = #{id} 
 	</select>
+	
+	<insert id="insertInfo">
+		insert into infos (post_date, title, content) values 
+		(curdate(), #{title}, #{content}) 
+	</insert>
+	
+	<select id="countInfos" resultType="int">
+		select count(*) from infos 
+		where id = #{id} 
+	</select>
+	
+	<update id="updateInfo">
+		update infos set 
+		title = #{title}, 
+		content = #{content} 
+		where id = #{id} 
+	</update>
+	
+	<delete id="deleteInfo">
+		delete from infos 
+		where id = #{id} 
+	</delete>
 </mapper>

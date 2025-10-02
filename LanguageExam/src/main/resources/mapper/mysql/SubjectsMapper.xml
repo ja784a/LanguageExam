@@ -14,4 +14,9 @@
 		select * from subjects 
 		where id = #{id} 
 	</select>
+	
+	<select id="countSubjects" resultType="int">
+		select count(*) from subjects 
+		where id = #{subjectId} 
+	</select>
 </mapper>

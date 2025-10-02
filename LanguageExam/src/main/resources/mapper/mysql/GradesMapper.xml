@@ -5,6 +5,7 @@
 	<resultMap type="language.exam.domain.exams.model.Grades" id="grades">
 		<id column="id" property="id"></id>
 		<result column="grade" property="grade"></result>
+		<collection property="placeList" ofType="language.exam.domain.exam.Places" resultMap="language.exam.repository.PlacesMapper.places"></collection>
 	</resultMap>
 	<select id="selectAllGrades" resultType="Grades">
 		select * from grades 
@@ -13,5 +14,31 @@
 	<select id="selectGrade" resultType="Grades">
 		select * from grades 
 		where id = #{id} 
+	</select>
+	
+	<select id="countGrades" resultType="int">
+		select count(*) from grades 
+		where id = #{gradeId} 
+	</select>
+	
+	<select id="selectIds" resultType="Integer">
+		select id from grades 
+	</select>
+	
+	<select id="selectExamDates" resultType="grades">
+		select grades.id as g_id, grades.grade, places.place, exam_infos.exam_date from grades 
+		left join exam_infos  
+		on grades.id = grade_id 
+		join places 
+		on place_id = places.id 
+		where grades.id in 
+		<foreach item="id" collection="gradeIds" open="(" separator="," close=")">
+			#{id} 
+			and places.id in 
+			<foreach item="id" collection="placeIds" open="(" separator="," close=")">
+				#{id} 
+			</foreach>
+		</foreach>
+		and subject_id = #{subjectId} 
 	</select>
 </mapper>

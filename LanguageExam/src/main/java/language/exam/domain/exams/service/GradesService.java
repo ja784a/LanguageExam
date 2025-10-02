@@ -9,4 +9,10 @@ public interface GradesService {
 	public List<Grades> getAllGrades();
 	
 	public Grades getGrade(Integer id);
+	
+	public boolean isValidGradeId(Integer gradeId);
+	
+	public List<Integer> getIds();
+	
+	public List<Grades> getExamDates(Integer subjectId, List<Integer> gradeIds, List<Integer> placeIds);
 }

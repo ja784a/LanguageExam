@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import language.exam.domain.exams.model.Accounts;
 import language.exam.domain.exams.service.AccountsService;
 import language.exam.form.ChangeAccountInfoForm;
+import language.exam.form.ChangePasswordForm;
 import language.exam.form.RegisterAccountForm;
 
 @Controller
@@ -76,5 +77,25 @@ public class AccountController {
 		}
 		
 		return "redirect:/account-info";
+	}
+	
+	
+	@GetMapping("/change-password")
+	public String getChangePassword(@ModelAttribute ChangePasswordForm passwordForm) {
+		return "account/change-password";
+	}
+	
+	@PostMapping("/change-password")
+	public String postChangePassword(@Validated ChangePasswordForm passwordForm, BindingResult result, @AuthenticationPrincipal(expression = "id") Integer id) {
+		if (result.hasErrors()) {
+			return getChangePassword(passwordForm);
+		} else {
+			Accounts account = new Accounts();
+			account.setPass(passwordForm.getPass());
+			account.setId(id);
+			accountsService.updatePassword(account);
+			
+			return "redirect:/change-account-info";
+		}
 	}
 }

@@ -22,4 +22,16 @@ public class PlacesServiceImpl implements PlacesService {
 	public Places getPlace(Integer id) {
 		return mapper.selectPlace(id);
 	}
+	
+	public boolean isValidPlaceId(Integer placeId) {
+		if (mapper.countPlaces(placeId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public List<Integer> getIds() {
+		return mapper.selectIds();
+	}
 }

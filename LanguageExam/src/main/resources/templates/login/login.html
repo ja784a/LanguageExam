@@ -17,7 +17,7 @@
 			<form th:action="@{/login}" method="post">
 				<div class="mb-2 row justify-content-center">
 					<div class="col-sm-9">
-						<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger text-center"></div>
+						<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="#{login-error}" class="text-danger text-center"></div>
 					</div>
 				</div>
 				<div class="row p-5 justify-content-center">

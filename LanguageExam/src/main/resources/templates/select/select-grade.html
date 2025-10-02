@@ -26,12 +26,13 @@
 					<div th:text="#{select-grade-msg}"></div>
 				</div>
 			</div>
-			<form th:action="@{/select-grade}" method="post" th:object="${selectGradeForm}">
+			<form th:action="@{/select-grade/{id} (id = ${subject.id})}" method="post" th:object="${selectGradeForm}">
 				<div class="row pt-2 pb-5">
 					<div class="col-3">
-						<select th:field="*{gradeId}">
+						<select th:field="*{gradeId}" th:errorclass="is-invalid">
 							<option th:each="grade:${gradesList}" th:text="${grade.grade}" th:value="${grade.id}"></option>
 						</select>
+						<div class="invalid-feedback" th:errors="*{gradeId}"></div>
 					</div>
 				</div>
 				<div class="row pb-3 justify-content-end">

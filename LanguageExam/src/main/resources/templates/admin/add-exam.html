@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://lutraq.net.nz/thymeleaf/layout" 
+ layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{add-exam}"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row">
+				<div class="col">
+					<h4 th:text="#{add-exam}"></h4>
+				</div>
+			</div>
+			<form th:action="@{/add-exam-for-admin}" method="post" th:object="${addExamInfoForm}">
+				<div class="row mt-3">
+					<div class="col-2">
+						<h6 th:text="#{subject}"></h6>
+					</div>
+					<div class="col">
+						<select th:field="*{subjectId}" th:errorclass="is-invalid">
+							<option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.subject}"></option>
+						</select>
+						<div class="invalid-feedback" th:errors="*{subjectId}"></div>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-2">
+						<h6 th:text="#{grade}"></h6>
+					</div>
+					<div class="col">
+						<select th:field="*{gradeId}" th:errorclass="is-invalid">
+							<option th:each="grade:${grades}" th:value="${grade.id}" th:text="${grade.grade}"></option>
+						</select>
+						<div class="invalid-feedback" th:errors="*{gradeId}"></div>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-2">
+						<h6 th:text="#{place}"></h6>
+					</div>
+					<div class="col">
+						<select th:field="*{placeId}" th:errorclass="is-invalid">
+							<option th:each="place:${places}" th:value="${place.id}" th:text="${place.place}"></option>
+						</select>
+						<div class="invalid-feedback" th:errors="*{placeId}"></div>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-2">
+						<h6 th:text="#{exam-date}"></h6>
+					</div>
+					<div class="col">
+						<input type="date" th:field="*{examDate}" th:errorclass="is-invalid">
+						<div class="invalid-feedback" th:errors="*{examDate}"></div>
+					</div>
+				</div>
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<div class="row">
+						<div class="col">
+							<div th:each="error:${#fields.globalErrors()}" th:text="${error}" class="text-danger"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row  m-3 justify-content-end">
+					<div class="col-3">
+						<div><a th:href="@{/admin-exams-for-admin}" th:text="#{back}"></a> </div>
+					</div>
+					<div class="col-3">
+						<input type="submit" th:value="#{add-exam-btn}" class="btn btn-danger">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

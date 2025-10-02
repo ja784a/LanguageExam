@@ -22,4 +22,12 @@ public class SubjectsServiceImpl implements SubjectsService {
 	public Subjects getSubject(Integer id) {
 		return mapper.selectSubject(id);
 	}
+	
+	public boolean isValidSubjectId(Integer subjectId) {
+		if (mapper.countSubjects(subjectId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

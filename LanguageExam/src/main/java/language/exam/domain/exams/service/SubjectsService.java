@@ -9,4 +9,6 @@ public interface SubjectsService {
 	public List<Subjects> getAllSubjects();
 	
 	public Subjects getSubject(Integer id);
+	
+	public boolean isValidSubjectId(Integer subjectId);
 }

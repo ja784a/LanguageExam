@@ -23,4 +23,5 @@ public class InfosController {
 		
 		return "infos/info-details";
 	}
+	
 }

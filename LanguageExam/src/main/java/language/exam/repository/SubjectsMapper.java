@@ -13,4 +13,5 @@ public interface SubjectsMapper {
 	
 	public Subjects selectSubject(Integer id);
 	
+	public int countSubjects(Integer subjectId);
 }

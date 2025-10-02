@@ -40,4 +40,58 @@
 		where id = #{examId} 
 		and exam_date &gt; curdate() + interval 1 month  
 	</select>
+	
+	<select id="selectExamDates" resultMap="examInfos">
+		select exam_date from exam_infos 
+		where cancel = 0 
+		and subject_id = #{subjectId} 
+		and grade_id = #{gradeId} 
+		and place_id = #{placeId}  
+	</select>
+	
+	<select id="selectExamInfosForAdmin" resultMap="examInfos">
+		select * from exam_infos 
+		join subjects 
+		on subject_id = subjects.id 
+		join grades 
+		on grade_id = grades.id 
+		join places 
+		on place_id = places.id 
+		where exam_date &gt; curdate() + interval 1 month 
+		order by exam_date asc
+		limit #{size} offset #{offset} 
+	</select>
+	
+	<select id="countExamInfosForAdmin" resultType="int">
+		select count(*) from exam_infos 
+		where exam_date &gt; curdate() + interval 1 month 
+	</select>
+	
+	<insert id="insertExamInfo">
+		insert into exam_infos (subject_id, grade_id, exam_date, place_id) values 
+		(#{subjectId}, #{gradeId}, #{examDate}, #{placeId} )
+	</insert>
+	
+	<select id="countExamInfosForNotDuplicatedExam" resultType="int">
+		select count(*) from exam_infos 
+		where subject_id = #{subjectId} 
+		and grade_id = #{gradeId} 
+		and place_id = #{placeId} 
+		and exam_date = #{examDate} 
+	</select>
+	
+	<update id="updateExamInfo">
+		update exam_infos set 
+		exam_date = #{examDate}, 
+		old_date = #{oldDate}, 
+		comments = #{comments} 
+		where id = #{id} 
+	</update>
+	
+	<update id="updateCancel">
+		update exam_infos set 
+		cancel = 1, 
+		comments = #{comments} 
+		where id = #{id} 
+	</update>
 </mapper>

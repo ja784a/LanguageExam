@@ -18,59 +18,61 @@
 				</div>
 			</div>
 		</div>
-		<div class="conatainer-fluid">
+		<div class="container-fluid" style="background-color: darkgrey;">
 			<div sec:authorize="isAnonymous()">
-				<div class="row" style="background-color: darkgrey;">
-					<div class="col">
-						<nav class="navbar p-0">
-							<ul class="nav">
-								<li class="nav-item">
-									<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
-								</li>
-							</ul>
-							<ul class="nav">
-								<li class="nav-item">
-									<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
+				<nav class="navbar p-0">
+					<ul class="nav">
+						<li class="nav-item">
+							<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
+						</li>
+					</ul>
+					<ul class="nav">
+						<li class="nav-item">
+							<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
+						</li>
+					</ul>
+				</nav>
 			</div>
 			<div sec:authrize="isauthenticated()">
-				<div class="row" style="background-color: darkgrey;">
-					<div class="col">
-						<nav class="navbar p-0">
-							<div sec:authorize="hasRole('USER')">
-								<ul class="nav">
-									<li class="nav-item">
-										<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
-									</li>
+				<div sec:authorize="hasRole('USER')">
+					<nav class="navbar">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/exams-guide}"></a>
+							</li>
+						</ul>
+						<ul class="nav justify-content-end">
+							<li class="nav-item">
+								<a class="nav-link text-dark" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-black" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<li><a th:href="@{/account-info}" class="dropdown-item nav-link text-dark" th:text="#{account-info}"></a></li>
+									<form th:action="@{/logout}" method="post">
+										<li><button class="dropdown-item btn-link" type="submit" th:text="#{logout}"></button></li>
+									</form>
 								</ul>
-							</div>
-							<div sec:authorize="hasRole('USER')">
-								<ul class="nav justify-content-end">
-									<li class="nav-item">
-										<a class="nav-link text-dark" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
-									</li>
-									<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle text-black" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											<li><a th:href="@{/account-info}" class="dropdown-item nav-link text-dark" th:text="#{account-info}"></a></li>
-											<form th:action="@{/logout}" method="post">
-												<li><button class="dropdown-item btn-link" type="submit" th:text="#{logout}"></button></li>
-											</form>
-										</ul>
-									</li>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div sec:authorize="hasRole('ADMIN')" class="d-flex justify-content-end">
+					<nav class="navbar">
+						<ul class="nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-black" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<li><a th:href="@{/admin-exams-for-admin}" th:text="#{admin-exams-for-admin}" class="dropdown-item nav-link text-dark"></a></li>
+									<li><a th:href="@{/admin-fees-for-admin}" th:text="#{admin-fees-for-admin}" class="dropdown-item nav-link text-dark"></a></li>
+									<li><a th:href="@{/admin-infos-for-admin}" th:text="#{admin-infos-for-admin}" class="dropdown-item nav-link text-dark"></a></li>
+									<form th:action="@{/logout}" method="post">
+										<li><button class="dropdown-item btn-link" type="submit" th:text="#{logout}"></button></li>
+									</form>
 								</ul>
-							</div>
-							<div sec:authorize="hasRole('ADMIN')">
-								<li class="nav-item dropdown">
-									<a class="nav-link droppdown-togle text-black" id="navbarDroppdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
-								</li>
-							</div>
-						</nav>
-					</div>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>

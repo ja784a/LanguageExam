@@ -13,4 +13,6 @@ public interface BookingsService {
 	public boolean isNotDuplicatedDate(Date examDate, Integer accountid);
 	
 	public void deleteBooking(Integer accountId, Integer examId);
+	
+	public boolean isInCapacity(Integer examId);
 }

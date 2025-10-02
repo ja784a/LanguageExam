@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://lutraq.net.nz/thymeleaf/layout" 
+ layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{change-exam-date-title}"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container" style="width: 800px;">
+			<div class="row">
+				<div class="col">
+					<h4 th:text="#{change-exam-date-title}"></h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<h6 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade} + ' ' + ${examInfo.places.place} + ' ' + ${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')}"></h6>
+				</div>
+			</div>
+			<form th:action="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" method="post" th:object="${changeExamDateForm}">
+				<div class="row p-3">
+					<div class="col-3">
+						<h6 th:text="#{new-date}"></h6>
+					</div>
+					<div class="col-3">
+						<input type="date" th:field="*{examDate}" class="form-control" th:errorclass="is-invalid">
+						<div class="invalid-feedback" th:errors="*{examDate}"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<h6 th:text="#{comments}"></h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<textarea th:field="*{comments}" th:errorclass="is-invalid" style="width: 400px;"></textarea>
+						<div class="invalid-feedback" th:errors="*{comments}"></div>
+					</div>
+				</div>
+				<div class="row m-3">
+					<div class="col">
+						<a th:href="@{/admin-exams-for-admin}" th:text="#{back}"></a>
+					</div>
+					<div class="col">
+						<input type="hidden" th:field="*{oldDate}">
+						<input type="hidden" th:field="*{id}">
+						<input type="submit" th:value="#{change-exam-date-btn}" class="btn btn-danger">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

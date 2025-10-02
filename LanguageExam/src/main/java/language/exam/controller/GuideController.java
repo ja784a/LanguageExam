@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import language.exam.domain.exams.model.ExamInfos;
 import language.exam.domain.exams.model.Grades;
 import language.exam.domain.exams.model.Infos;
 import language.exam.domain.exams.model.Places;
 import language.exam.domain.exams.model.Subjects;
+import language.exam.domain.exams.service.ExamInfosService;
 import language.exam.domain.exams.service.GradesService;
 import language.exam.domain.exams.service.InfosService;
 import language.exam.domain.exams.service.PlacesService;
@@ -32,6 +34,9 @@ public class GuideController {
 	
 	@Autowired
 	private PlacesService placesService;
+	
+	@Autowired
+	private ExamInfosService examInfosService;
 	
 	@GetMapping("/exams-guide")
 	public String getExamGuide(Model model) {
@@ -62,21 +67,31 @@ public class GuideController {
 		
 		model.addAttribute("subject", subject);
 		
-		List<Grades> gradesList = gradesService.getAllGrades();
+		List<Grades> gradeList = gradesService.getAllGrades();
+		
+		List<Places> placeList = placesService.getAllPlaces();
+		
+		for (Grades g:gradeList) {
+			for (Places p:placeList) {
+				List<ExamInfos> examDates = examInfosService.getExamDates(id, g.getId(), p.getId());
+				
+				model.addAttribute("examDates", examDates);
+			}
+		}
 		
 		String grades = "";
 		
-		for (Grades g : gradesList) {
+		for (Grades g : gradeList) {
 			grades += g.getGrade() + " ";
 		}
 		
 		model.addAttribute("grades", grades);
 		
-		model.addAttribute("gradesList", gradesList);
+		model.addAttribute("gradeList", gradeList);
 		
-		List<Places> places = placesService.getAllPlaces();
+		model.addAttribute("placeList", placeList);
 		
-		model.addAttribute("places", places);
+		
 		
 		return "guide/exam-details";
 	}

@@ -36,4 +36,17 @@ public class AccountsServiceImpl implements AccountsService {
 	public void updateAccount(Accounts account) {
 		mapper.updateAccount(account);
 	}
+	
+	public boolean isNotRegisteredEmailExceptLoginUser(String mail, Integer id) {
+		if (mapper.countAccountsExceptLoginUser(mail, id) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void updatePassword(Accounts account) {
+		account.setPass(encoder.encode(account.getPass()));
+		mapper.updatePassword(account);
+	}
 }

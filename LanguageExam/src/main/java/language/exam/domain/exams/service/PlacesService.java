@@ -9,4 +9,8 @@ public interface PlacesService {
 	public List<Places> getAllPlaces();
 	
 	public Places getPlace(Integer id);
+	
+	public boolean isValidPlaceId(Integer placeId);
+	
+	public List<Integer> getIds();
 }

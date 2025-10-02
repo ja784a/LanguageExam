@@ -29,9 +29,10 @@
 			<form th:action="@{/select-place}" method="post" th:object="${selectPlaceForm}">
 				<div class="row pt-2 pb-5">
 					<div class="col-3">
-						<select th:field="*{placeId}">
+						<select th:field="*{placeId}" th:errorclass="is-invalid">
 							<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
 						</select>
+						<div class="invalid-feedback" th:errors="*{placeId}"></div>
 					</div>
 				</div>
 				<div class="row pb-3 justify-content-end">

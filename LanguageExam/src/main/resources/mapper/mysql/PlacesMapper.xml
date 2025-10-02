@@ -5,6 +5,7 @@
 	<resultMap type="language.exam.domain.exams.model.Places" id="places">
 		<id column="id" property="id"></id>
 		<result column="place" property="place"></result>
+		<collection property="examInfoList" ofType="language.exam.domain.exam.ExamInfos" resultMap="language.exam.repository.ExamInfosMapper.examInfos"></collection>
 	</resultMap>
 	<select id="selectAllPlaces" resultMap="places">
 		select * from places 
@@ -13,5 +14,14 @@
 	<select id="selectPlace" resultMap="places">
 		select * from places 
 		where id = #{id} 
+	</select>
+	
+	<select id="countPlaces" resultType="int">
+		select count(*) from places 
+		where id = #{placeId} 
+	</select>
+	
+	<select id="selectIds" resultType="Integer">
+		select id from places 
 	</select>
 </mapper>

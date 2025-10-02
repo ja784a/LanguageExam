@@ -13,4 +13,8 @@ public interface AccountsMapper {
 	public Accounts selectAccount(String mail);
 	
 	public void updateAccount(Accounts account);
+	
+	public int countAccountsExceptLoginUser(String mail, Integer id);
+	
+	public void updatePassword(Accounts account);
 }
