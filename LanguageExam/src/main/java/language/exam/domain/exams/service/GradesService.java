@@ -14,5 +14,5 @@ public interface GradesService {
 	
 	public List<Integer> getIds();
 	
-	public List<Grades> getExamDates(Integer subjectId, List<Integer> gradeIds, List<Integer> placeIds);
+	public List<Grades> getExamDates(Integer subjectId);
 }

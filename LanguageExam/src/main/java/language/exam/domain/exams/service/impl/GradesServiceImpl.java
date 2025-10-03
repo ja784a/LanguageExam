@@ -35,7 +35,7 @@ public class GradesServiceImpl implements GradesService {
 		return mapper.selectIds();
 	}
 	
-	public List<Grades> getExamDates(Integer subjectId, List<Integer> gradeIds, List<Integer> placeIds) {
-		return mapper.selectExamDates(subjectId, gradeIds, placeIds);
+	public List<Grades> getExamDates(Integer subjectId) {
+		return mapper.selectExamDates(subjectId);
 	}
 }

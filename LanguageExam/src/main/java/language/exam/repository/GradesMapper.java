@@ -17,5 +17,5 @@ public interface GradesMapper {
 	
 	public List<Integer> selectIds();
 	
-	public List<Grades> selectExamDates(Integer subjectId, List<Integer> gradeIds, List<Integer> placeIds);
+	public List<Grades> selectExamDates(Integer subjectId);
 }

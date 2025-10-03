@@ -26,19 +26,13 @@
 	</select>
 	
 	<select id="selectExamDates" resultType="grades">
-		select grades.id as g_id, grades.grade, places.place, exam_infos.exam_date from grades 
-		left join exam_infos  
-		on grades.id = grade_id 
-		join places 
-		on place_id = places.id 
-		where grades.id in 
-		<foreach item="id" collection="gradeIds" open="(" separator="," close=")">
-			#{id} 
-			and places.id in 
-			<foreach item="id" collection="placeIds" open="(" separator="," close=")">
-				#{id} 
-			</foreach>
-		</foreach>
-		and subject_id = #{subjectId} 
+		select grades.grade, places.place, exam_infos.exam_date from grades 
+		left join exam_infos 
+		on grades.id = exam_infos.grade_id 
+		right join places
+		on exam_infos.place_id = places.id 
+		where exam_infos.subject_id = #{subjectId} 
+		and grade_id = grades.id 
+		and place_id = places.id 
 	</select>
 </mapper>

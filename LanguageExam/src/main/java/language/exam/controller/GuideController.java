@@ -9,10 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import language.exam.domain.exams.model.ExamInfos;
 import language.exam.domain.exams.model.Grades;
 import language.exam.domain.exams.model.Infos;
-import language.exam.domain.exams.model.Places;
 import language.exam.domain.exams.model.Subjects;
 import language.exam.domain.exams.service.ExamInfosService;
 import language.exam.domain.exams.service.GradesService;
@@ -67,17 +65,9 @@ public class GuideController {
 		
 		model.addAttribute("subject", subject);
 		
-		List<Grades> gradeList = gradesService.getAllGrades();
+		List<Grades> gradeList = gradesService.getExamDates(id);
 		
-		List<Places> placeList = placesService.getAllPlaces();
 		
-		for (Grades g:gradeList) {
-			for (Places p:placeList) {
-				List<ExamInfos> examDates = examInfosService.getExamDates(id, g.getId(), p.getId());
-				
-				model.addAttribute("examDates", examDates);
-			}
-		}
 		
 		String grades = "";
 		
@@ -88,8 +78,6 @@ public class GuideController {
 		model.addAttribute("grades", grades);
 		
 		model.addAttribute("gradeList", gradeList);
-		
-		model.addAttribute("placeList", placeList);
 		
 		
 		
