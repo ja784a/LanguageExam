@@ -3,8 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="language.exam.repository.GradesMapper">
 	<resultMap type="language.exam.domain.exams.model.Grades" id="grades">
-		<id column="id" property="id"></id>
+		<id column="g_id" property="id"></id>
 		<result column="grade" property="grade"></result>
+		<association property="fees" resultMap="language.exam.repository.FeesMapper.fees"></association>
 		<collection property="placeList" ofType="language.exam.domain.exam.Places" resultMap="language.exam.repository.PlacesMapper.places"></collection>
 	</resultMap>
 	<select id="selectAllGrades" resultType="Grades">
@@ -25,14 +26,17 @@
 		select id from grades 
 	</select>
 	
-	<select id="selectExamDates" resultType="grades">
-		select grades.grade, places.place, exam_infos.exam_date from grades 
-		left join exam_infos 
-		on grades.id = exam_infos.grade_id 
-		right join places
-		on exam_infos.place_id = places.id 
-		where exam_infos.subject_id = #{subjectId} 
-		and grade_id = grades.id 
-		and place_id = places.id 
+	<select id="selectExamDates" resultMap="grades">
+		select
+		 grades.id as g_id, grades.grade,
+		 places.id as p_id, places.place, ei.id as e_id,
+		 ei.exam_date, subject_id
+		from grades
+		join places
+		left outer join (
+		 select * from exam_infos where subject_id = #{subjectId} 
+		) ei
+		 on grades.id = grade_id and places.id = place_id
+		order by p_id asc, g_id asc
 	</select>
 </mapper>

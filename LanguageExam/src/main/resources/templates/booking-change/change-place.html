@@ -7,38 +7,39 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row p-1">
-				<div class="col-3" style="background-color: darkblue;">
+				<div class="col-sm-3" style="background-color: darkblue;">
 					<h5 th:text="${subject}" class="text-light"></h5>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-3">
+				<div class="col-sm-3 col-6">
 					<h3 th:text="#{booking-change}"></h3>
 				</div>
-				<div class="col-4">
+				<div class="col-sm-4 col-6">
 					<h4 th:text="#{grade} + ${grade}" class="text-end"></h4>
 				</div>
 			</div>
 			<div class="row p-2">
-				<div class="col-3">
+				<div class="col-sm-3">
 					<div th:text="#{select-place-msg}"></div>
 				</div>
 			</div>
 			<form th:action="@{/change-place}" method="post" th:object="${selectPlaceForm}">
 				<div class="row pt-2 pb-5">
-					<div class="col-3">
+					<div class="col-sm-3">
 						<select th:field="*{placeId}">
 							<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
 						</select>
 					</div>
 				</div>
 				<div class="row pb-3 justify-content-end">
-					<div class="col-3">
+					<div class="col-sm-3 col-6">
 						<a th:href="@{/exam-schedule}" th:text="#{back}"></a>
 					</div>
-					<div class="col-4">
+					<div class="col-sm-4 col-6">
+						<input type="hidden" th:field="*{subjectId}">
 						<input type="submit" th:value="#{change-exam-date-btn}" class="btn btn-primary rounded-pill">
 					</div>
 				</div>

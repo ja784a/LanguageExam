@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://lutraq.net.nz/thymeleaf/layout" 
+ layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{admin-fees}"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row m-3 justify-content-center">
+				<div class="col-sm-5">
+					<h4 th:text="#{admin-fees}"></h4>
+				</div>
+				<div class="col-sm-4">
+					<div><a th:href="@{/edit-fees-for-admin}" th:text="#{edit-fees-btn}" class="btn btn-primary"></a></div>
+				</div>
+			</div>
+			<div class="row m-3 justify-content-center">
+				<div class="border border-dark col-10">
+					<div th:each="subject:${subjects}">
+						<div class="row mt-2 justify-content-center">
+							<div class="col-sm-4">
+								<h5 th:text="${subject.subject}"></h5>
+							</div>
+							<div class="col-sm-2 col-6">
+								<div th:each="grade:${subject.gradeList}">
+									<h6 th:text="${grade.grade}"></h6>
+								</div>
+							</div>
+							<div class="col-sm-3 col-6">
+								<div th:each="grade:${subject.gradeList}">
+									<h6 th:text="${grade.fees.fee} + #{yen}"></h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

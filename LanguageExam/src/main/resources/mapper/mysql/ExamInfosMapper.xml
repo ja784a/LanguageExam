@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="language.exam.repository.ExamInfosMapper">
 	<resultMap type="language.exam.domain.exams.model.ExamInfos" id="examInfos">
-		<id column="id" property="id"></id>
+		<result column="e_id" property="id"></result>
 		<result column="subject_id" property="subjectId"></result>
 		<result column="grade_id" property="gradeId"></result>
 		<result column="exam_date" property="examDate"></result>
@@ -16,7 +16,7 @@
 		<association property="places" resultMap="language.exam.repository.PlacesMapper.places"></association>
 	</resultMap>
 	<select id="selectExamInfosForUsers" resultMap="examInfos">
-		select * from exam_infos 
+		select id as e_id, exam_date from exam_infos 
 		where exam_date &gt; curdate() + interval 1 month  
 		and cancel = 0 
 		and subject_id = #{subjectId} 
@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="selectExamInfo" resultMap="examInfos">
-		select * from exam_infos 
+		select  exam_infos.id as e_id, exam_date, exam_infos.subject_id, exam_infos.grade_id, subjects.id, subjects.subject, grades.id as g_id, grades.grade, places.id as p_id, places.place from exam_infos 
 		join subjects 
 		on subject_id = subjects.id 
 		join grades 
@@ -50,14 +50,14 @@
 	</select>
 	
 	<select id="selectExamInfosForAdmin" resultMap="examInfos">
-		select * from exam_infos 
+		select exam_infos.id as e_id, exam_date, exam_infos.comments, exam_infos.cancel, subjects.id, subjects.subject, grades.id as g_id, grades.grade, places.id as p_id, places.place from exam_infos 
 		join subjects 
 		on subject_id = subjects.id 
 		join grades 
 		on grade_id = grades.id 
 		join places 
 		on place_id = places.id 
-		where exam_date &gt; curdate() + interval 1 month 
+		where exam_date &gt;= curdate()  
 		order by exam_date asc
 		limit #{size} offset #{offset} 
 	</select>

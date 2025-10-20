@@ -18,7 +18,7 @@
 	</insert>
 	
 	<select id="selectBookings" resultMap="bookings">
-		select * from bookings 
+		select bookings.exam_id, subjects.subject, grades.grade, places.place, exam_infos.id as e_id, exam_infos.exam_date, exam_infos.old_date, exam_infos.comments, exam_infos.cancel from bookings 
 		join exam_infos 
 		on exam_id = exam_infos.id 
 		join subjects 

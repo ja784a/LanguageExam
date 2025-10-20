@@ -8,5 +8,6 @@ import lombok.Data;
 public class Grades {
 	private Integer id;
 	private String grade;
-	private List<Places> placeList;
+	private Fees fees;
+	private List<Places> placeList; 
 }

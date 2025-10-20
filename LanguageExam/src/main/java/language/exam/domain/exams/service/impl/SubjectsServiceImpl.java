@@ -30,4 +30,8 @@ public class SubjectsServiceImpl implements SubjectsService {
 			return false;
 		}
 	}
+	
+	public List<Subjects> getFees() {
+		return mapper.selectFees();
+	}
 }

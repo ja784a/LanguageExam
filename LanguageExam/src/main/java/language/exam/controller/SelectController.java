@@ -49,20 +49,24 @@ public class SelectController {
 	public String getSelectGrade(@PathVariable Integer id, @ModelAttribute SelectGradeForm selectGradeForm, Model model) {
 		Subjects subject = subjectsService.getSubject(id);
 		
-		model.addAttribute("subject", subject);
-		selectGradeForm.setSubjectId(subject.getId());
-		
-		List<Grades> gradesList = gradesService.getAllGrades();
-		String grades = "";
-		for (Grades g : gradesList) {
-			grades += g.getGrade() + " ";
+		if (subject == null) {
+			return "error/error";
+		} else {
+			model.addAttribute("subject", subject);
+			selectGradeForm.setSubjectId(subject.getId());
+			
+			List<Grades> gradesList = gradesService.getAllGrades();
+			String grades = "";
+			for (Grades g : gradesList) {
+				grades += g.getGrade() + " ";
+			}
+			
+			model.addAttribute("grades", grades);
+			
+			model.addAttribute("gradesList", gradesList);
+			
+			return "select/select-grade";
 		}
-		
-		model.addAttribute("grades", grades);
-		
-		model.addAttribute("gradesList", gradesList);
-		
-		return "select/select-grade";
 	}
 	
 	@PostMapping("/select-grade/{id}")

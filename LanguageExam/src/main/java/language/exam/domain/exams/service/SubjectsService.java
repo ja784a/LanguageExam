@@ -11,4 +11,6 @@ public interface SubjectsService {
 	public Subjects getSubject(Integer id);
 	
 	public boolean isValidSubjectId(Integer subjectId);
+	
+	public List<Subjects> getFees();
 }

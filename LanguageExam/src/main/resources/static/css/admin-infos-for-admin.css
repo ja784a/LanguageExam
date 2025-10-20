@@ -1,6 +1,5 @@
 @charset "UTF-8";
 .info-title {
-	width: 300px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

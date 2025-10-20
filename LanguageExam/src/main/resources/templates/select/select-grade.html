@@ -7,22 +7,22 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row p-1">
-				<div class="col-3" style="background-color: darkblue;">
+				<div class="col-sm-3 col-6" style="background-color: darkblue;">
 					<h5 th:text="${subject.subject}" class="text-light"></h5>
 				</div>
-				<div class="col-3" style="background-color: darkblue;">
+				<div class="col-sm-3 col-6" style="background-color: darkblue;">
 					<div class="text-light" th:text="${grades}"></div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-3">
+				<div class="col-sm-3">
 					<h3 th:text="#{exam-book}"></h3>
 				</div>
 			</div>
 			<div class="row p-2">
-				<div class="col-3">
+				<div class="col-sm-3">
 					<div th:text="#{select-grade-msg}"></div>
 				</div>
 			</div>
@@ -36,10 +36,10 @@
 					</div>
 				</div>
 				<div class="row pb-3 justify-content-end">
-					<div class="col-2">
+					<div class="col-sm-2 col-6">
 						<a th:href="@{/exams-guide}" th:text="#{back}"></a>
 					</div>
-					<div class="col-4">
+					<div class="col-sm-4 col-6">
 						<input type="hidden" th:field="*{subjectId}">
 						<input type="submit" th:value="#{select-place-btn}" class="btn btn-primary rounded-pill">
 					</div>

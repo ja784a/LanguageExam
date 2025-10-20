@@ -4,11 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title th:text="#{login}"></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width:800px">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h2 th:text="#{login}"></h2>
@@ -21,14 +21,14 @@
 					</div>
 				</div>
 				<div class="row p-5 justify-content-center">
-					<label th:text="#{mail}" class="form-label col-2 text-end" for="mail"></label>
-					<div class="col-7">
-						<input type="email" name="mail" class="form-control">
+					<label th:text="#{mail}" class="form-label col-sm-2 text-sm-end" for="mail"></label>
+					<div class="col-sm-7">
+						<div><input type="email" name="mail" class="form-control"></div>
 					</div>
 				</div>
 				<div class="row p-5 justify-content-center">
-					<label th:text="#{pass}" class="form-label col-2 text-end" for="pass"></label>
-					<div class="col-7">
+					<label th:text="#{pass}" class="form-label col-sm-2 text-sm-end" for="pass"></label>
+					<div class="col-sm-7">
 						<input type="password" name="pass" class="form-control">
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 						<a th:href="@{/register-account}" th:text="#{register}" class="text-end"></a>
 					</div>
 					<div class="col-3">
-						<input type="submit" th:value="#{login}" class="btn btn-primary rounded-pill">
+						<input type="submit" th:value="#{login-btn}" class="btn btn-primary rounded-pill">
 					</div>
 				</div>
 			</form>

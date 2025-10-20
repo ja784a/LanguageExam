@@ -55,23 +55,29 @@ public class BookingChangeController {
 	@GetMapping("change-place/{id}")
 	public String getChangePlace(@PathVariable("id") Integer examId, @ModelAttribute SelectPlaceForm selectPlaceForm, Model model, HttpSession session) {
 		ExamInfos examInfo = examInfosService.getExamInfo(examId);
-		model.addAttribute("subject",examInfo.getSubjects().getSubject());
-		model.addAttribute("grade", examInfo.getGrades(). getGrade());
 		
-		List<Places> places = placesService.getAllPlaces();
-		model.addAttribute("places", places);
-		
-		session.setAttribute("subjectId", examInfo. getSubjectId());
-		session.setAttribute("gradeId", examInfo.getGradeId());
-		session.setAttribute("oldExamId", examId);
-		
-		return "booking-change/change-place";
+		if (examInfo == null) {
+			return "error/error";
+		} else {
+			model.addAttribute("subject",examInfo.getSubjects().getSubject());
+			model.addAttribute("grade", examInfo.getGrades(). getGrade());
+			
+			List<Places> places = placesService.getAllPlaces();
+			model.addAttribute("places", places);
+			
+			selectPlaceForm.setSubjectId(examInfo.getSubjectId());
+	
+			session.setAttribute("gradeId", examInfo.getGradeId());
+			session.setAttribute("oldExamId", examId);
+			
+			return "booking-change/change-place";
+		}
 	}
 	
 	@PostMapping("change-place")
 	public String postChangePlace(HttpSession session, SelectPlaceForm selectPlaceForm) {
 		session.setAttribute("placeId", selectPlaceForm.getPlaceId());
-		
+		session.setAttribute("subjectId", selectPlaceForm.getSubjectId());
 		return "redirect:/change-exam-date";
 	}
 	

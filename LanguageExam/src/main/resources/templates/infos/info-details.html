@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 700px;">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h3 th:text="${info.title}"></h3>
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="row p-3 justify-content-center">
-				<div style="width: 600px; height: 200px; background-color: rgb(128, 128, 128); overflow-y: scroll;">
+				<div class="col-10" style="height: 200px; background-color: rgb(128, 128, 128); overflow-y: scroll;">
 					<div th:text="${info.content}"></div>
 				</div>
 			</div>

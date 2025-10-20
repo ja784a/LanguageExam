@@ -61,11 +61,14 @@ public class ExamsControllerForAdmin {
 		
 		Page<ExamInfos> resultPage = new PageImpl<>(examInfos, pageable, allExams);
 		
-		model.addAttribute("examInfos", examInfos);
-		model.addAttribute("resultPage", resultPage);
+		if (page >= resultPage.getTotalPages() || page < 0) {
+			return "error/error";
+		} else {
+			model.addAttribute("examInfos", examInfos);
+			model.addAttribute("resultPage", resultPage);
+		}
 		
-		
-		return "admin/admin-exams";
+		return "admin-exams/admin-exams";
 		
 	}
 	
@@ -80,7 +83,7 @@ public class ExamsControllerForAdmin {
 		List<Places> places = placesService.getAllPlaces();
 		model.addAttribute("places", places);
 		
-		return "admin/add-exam";
+		return "admin-exams/add-exam";
 	}
 	
 	@PostMapping("/add-exam-for-admin")
@@ -98,11 +101,16 @@ public class ExamsControllerForAdmin {
 	@GetMapping("/change-exam-date-for-admin/{id}")
 	public String getChangeExamDate(@PathVariable("id") Integer id, @ModelAttribute ChangeExamDateForm changeExamDateForm, Model model) {
 		ExamInfos examInfo = examInfosService.getExamInfo(id);
-		model.addAttribute("examInfo", examInfo);
-		changeExamDateForm.setOldDate(examInfo.getExamDate());
-		changeExamDateForm.setId(id);
-		changeExamDateForm.setComments(examInfo.getComments());
-		return "admin/change-exam-date";
+		
+		if (examInfo == null) {
+			return "error/error";
+		} else {
+			model.addAttribute("examInfo", examInfo);
+			changeExamDateForm.setOldDate(examInfo.getExamDate());
+			changeExamDateForm.setId(id);
+			changeExamDateForm.setComments(examInfo.getComments());
+			return "admin-exams/change-exam-date";
+		}
 	}
 	
 	@PostMapping("/change-exam-date-for-admin/{id}")
@@ -120,11 +128,16 @@ public class ExamsControllerForAdmin {
 	@GetMapping("/cancel-exam-for-admin/{id}")
 	public String getCancelExam(@ModelAttribute CancelExamFormForAdmin cancelExamFormForAdmin, Model model, @PathVariable("id") Integer id) {
 		ExamInfos examInfo = examInfosService.getExamInfo(id);
-		model.addAttribute("examInfo", examInfo);
 		
-		cancelExamFormForAdmin.setComments(examInfo.getComments());
-		
-		return "admin/cancel-exam-for-admin";
+		if (examInfo == null) {
+			return "error/error";
+		} else {
+			model.addAttribute("examInfo", examInfo);
+			
+			cancelExamFormForAdmin.setComments(examInfo.getComments());
+			
+			return "admin-exams/cancel-exam";
+		}
 	}
 	
 	@PostMapping("/cancel-exam-for-admin/{id}")

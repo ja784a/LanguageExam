@@ -31,14 +31,19 @@ public class CancelController {
 	@GetMapping("confirm-cancel-exam/{id}")
 	public String getCancelCancelExam(@PathVariable("id") Integer examId, @ModelAttribute CancelExamForm cancelExamForm, Model model) {
 		ExamInfos examInfo = examInfosService.getExamInfo(examId);
-		model.addAttribute("examInfo", examInfo);
 		
-		Fees fee = feesService.getFee(examInfo.getSubjectId(), examInfo.getGradeId());
-		model.addAttribute("fee", fee);
-		
-		cancelExamForm.setExamId(examId);
-		
-		return "cancel/confirm-cancel-exam";
+		if (examInfo == null) {
+			return "error/error";
+		} else {
+			model.addAttribute("examInfo", examInfo);
+			
+			Fees fee = feesService.getFee(examInfo.getSubjectId(), examInfo.getGradeId());
+			model.addAttribute("fee", fee);
+			
+			cancelExamForm.setExamId(examId);
+			
+			return "cancel/confirm-cancel-exam";
+		}
 	}
 	
 	@PostMapping("confirm-cancel-exam")

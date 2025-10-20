@@ -30,12 +30,12 @@ public class InfosControllerForAdmin {
 		List<Infos> infos = infosService.getAllInfos();
 		model.addAttribute("infos", infos);
 		
-		return "admin/admin-infos";
+		return "admin-infos/admin-infos";
 	}
 	
 	@GetMapping("/add-info-for-admin")
 	public String getAddInfo(@ModelAttribute AddEditInfoForm addInfoForm) {
-		return "admin/add-info";
+		return "admin-infos/add-info";
 	}
 	
 	@PostMapping("/add-info-for-admin")
@@ -53,12 +53,17 @@ public class InfosControllerForAdmin {
 	@GetMapping("/edit-info-for-admin/{id}")
 	public String getEditInfo(@ModelAttribute AddEditInfoForm addEditInfoForm, @PathVariable("id") Integer id, Model model) {
 		Infos info = infosService.getInfo(id);
-		addEditInfoForm.setTitle(info.getTitle());
-		addEditInfoForm.setContent(info.getContent());
-		addEditInfoForm.setId(info.getId());
-		model.addAttribute("id", info.getId());
 		
-		return "admin/edit-info";
+		if (info == null) {
+			return "error/error";
+		} else {
+			addEditInfoForm.setTitle(info.getTitle());
+			addEditInfoForm.setContent(info.getContent());
+			addEditInfoForm.setId(info.getId());
+			model.addAttribute("id", info.getId());
+			
+			return "admin-infos/edit-info";
+		}
 	}
 	
 	@PostMapping("/edit-info-for-admin/{id}")

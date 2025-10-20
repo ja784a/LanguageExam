@@ -1,5 +1,7 @@
 package language.exam.domain.exams.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,13 @@ public class FeesServiceImpl implements FeesService {
 	
 	public Fees getFee(Integer subjectId, Integer gradeId) {
 		return mapper.selectFee(subjectId, gradeId);
+	}
+	
+	public List<Fees> getFeesWithSubjectId(Integer subjectId) {
+		return mapper.selectFeesWithSubjectId(subjectId);
+	}
+	
+	public void updateFees(List<Fees> feesList) {
+		mapper.updateFees(feesList);
 	}
 }

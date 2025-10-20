@@ -8,20 +8,20 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-5">
+				<div class="col-sm-5">
 					<h4 class="pt-1" th:text="#{your-schedule}"></h4>
 				</div>
-				<div class="col-5">
-					<div class="text-end pt-2" th:text="#{today} + '    ' + ${#dates.format(today, 'yyyy年MM月dd日(E)')}"></div>
+				<div class="col-sm-5">
+					<div class="text-sm-end pt-2" th:text="#{today} + '    ' + ${#dates.format(today, 'yyyy年MM月dd日(E)')}"></div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-10 border border-dark" style="height: 200px; overflow-y: scroll; ">
+				<div class="col-11 border border-dark" style="height: 200px; overflow-y: scroll; ">
 					<div th:if="${bookings.size == 0}">
 						<div class="row justify-content-center">
-							<div class="col-6">
+							<div class="col-sm-6">
 								<div th:text="#{no-exam-msg}" class="m-5"></div>
 							</div>
 						</div>
@@ -65,11 +65,11 @@
 								<div class="col-6">
 									<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
 								</div>
-								<div class="col-4">
+								<div class="col-sm-4">
 									<a th:href="@{/change-place/{id} (id = ${booking.examId})}" th:text="#{change-booking}" class="p-0 btn btn-primary text-lignt"></a>
 								</div>
 	
-								<div class="col-2">
+								<div class="col-sm-2">
 									<a th:href="@{/confirm-cancel-exam/{id} (id = ${booking.examId})}" th:text="#{cancel-exam}" class="p-0 btn btn-danger text-light"></a>
 								</div>
 								<div class="col">

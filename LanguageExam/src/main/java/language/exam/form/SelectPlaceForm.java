@@ -7,4 +7,5 @@ import lombok.Data;
 public class SelectPlaceForm {
 	@ValidPlaceId
 	private Integer placeId;
+	private Integer subjectId;
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h4 th:text="#{change-exam-date-title}"></h4>
@@ -21,10 +21,10 @@
 			</div>
 			<form th:action="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" method="post" th:object="${changeExamDateForm}">
 				<div class="row p-3">
-					<div class="col-3">
+					<div class="col-sm-3 col-6">
 						<h6 th:text="#{new-date}"></h6>
 					</div>
-					<div class="col-3">
+					<div class="col-sm-3 col-6">
 						<input type="date" th:field="*{examDate}" class="form-control" th:errorclass="is-invalid">
 						<div class="invalid-feedback" th:errors="*{examDate}"></div>
 					</div>
@@ -36,7 +36,7 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<textarea th:field="*{comments}" th:errorclass="is-invalid" style="width: 400px;"></textarea>
+						<textarea th:field="*{comments}" th:errorclass="is-invalid" class="col-10"></textarea>
 						<div class="invalid-feedback" th:errors="*{comments}"></div>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<div class="col">
 						<input type="hidden" th:field="*{oldDate}">
 						<input type="hidden" th:field="*{id}">
-						<input type="submit" th:value="#{change-exam-date-btn}" class="btn btn-danger">
+						<input type="submit" th:value="#{change-exam-date-btn-for-admin}" class="btn btn-danger">
 					</div>
 				</div>
 			</form>

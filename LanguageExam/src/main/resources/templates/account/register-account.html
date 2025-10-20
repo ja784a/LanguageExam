@@ -8,76 +8,76 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h2 th:text="#{register}"></h2>
 				</div>
 				<form th:action="@{/register-account}" method="post" th:object="${registerAccountForm}">
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{name}" class="form-label col-3 text-end" for="name"></label>
-						<div class="col-7">
+						<label th:text="#{name}" class="form-label col-sm-3 text-sm-end" for="name"></label>
+						<div class="col-sm-7">
 							<input type="text" th:field="*{name}" class="form-control" th:errorclass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{name}"></div>
 						</div>
 					</div>
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{mail}" class="form-label col-3 text-end" for="mail"></label>
-						<div class="col-7">
+						<label th:text="#{mail}" class="form-label col-sm-3 text-sm-end" for="mail"></label>
+						<div class="col-sm-7">
 							<input type="email" th:field="*{mail}" class="form-control" th:errorclass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{mail}"></div>
 						</div>
 					</div>
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{pass}" class="form-label col-3 text-end" for="pass"></label>
-						<div class="col-7">
+						<label th:text="#{pass}" class="form-label col-sm-3 text-sm-end" for="pass"></label>
+						<div class="col-sm-7">
 							<input type="password" th:field="*{pass}" class="form-control" th:errorclass="is-invalid" th:classappend="${#fields.hasErrors('passwordValid')} ? 'is-invalid'">
 							<div class="invalid-feedback" th:errors="*{pass}"></div>
 							<div th:if="${#fields.hasErrors('passwordValid')}" class="invalid-feedback" th:errors="*{passwordValid}"></div>
 						</div>
 					</div>
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{pass-check}" class="form-label col-3 text-end" for="passCheck"></label>
-						<div class="col-7">
+						<label th:text="#{pass-check}" class="form-label col-sm-3 text-sm-end" for="passCheck"></label>
+						<div class="col-sm-7">
 							<input type="password" th:field="*{passCheck}" class="form-control" th:errorclass="is-invalid" th:classappend="${#fields.hasErrors('passwordValid')} ? 'is-invalid'">
 							<div class="invalid-feedback" th:errors="*{passCheck}"></div>
 							<div th:if="${#fields.hasErrors('passwordValid')}" class="invalid-feedback" th:errors="*{passwordValid}"></div>
 						</div>
 					</div>
 					<div class="row pt-3 justify-content-center">
-						<label th:text="#{address}" class="form-label col-3 text-end"></label>
-						<div class="col-7"></div>
+						<label th:text="#{address}" class="form-label col-sm-3 text-sm-end"></label>
+						<div class="col-sm-7"></div>
 					</div>
 					<div class="row pb-3 justify-content-center">
-						<label th:text="#{pref}" class="form-label col-3 text-end" for="pref"></label>
-						<div class="col-7">
+						<label th:text="#{pref}" class="form-label col-sm-3 text-sm-end" for="pref"></label>
+						<div class="col-sm-7">
 							<input type="text" th:field="*{pref}" class="form-control" th:errorclass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{pref}"></div>
 						</div>
 					</div>
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{city}" class="form-label col-3 text-end" for="city"></label>
-						<div class="col-7">
+						<label th:text="#{city}" class="form-label col-sm-3 text-sm-end" for="city"></label>
+						<div class="col-sm-7">
 							<input type="text" th:field="*{city}" class="form-control" th:errorclass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{city}"></div>
 						</div>
 					</div>
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{town}" class="form-label col-3 text-end" for="town"></label>
-						<div class="col-7">
+						<label th:text="#{town}" class="form-label col-sm-3 text-sm-end" for="town"></label>
+						<div class="col-sm-7">
 							<input type="text" th:field="*{town}" class="form-control" th:errorclass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{town}"></div>
 						</div>
 					</div>
 					<div class="row p-3 justify-content-center">
-						<label th:text="#{building}" class="form-label col-3 text-end" for="building"></label>
-						<div class="col-7">
+						<label th:text="#{building}" class="form-label col-sm-3 text-sm-end" for="building"></label>
+						<div class="col-sm-7">
 							<input type="text" th:field="*{building}" class="form-control" th:errorclass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{building}"></div>
 						</div>
 					</div>
 					<div class="row p-2 justify-content-end">
-						<div class="col-3">
+						<div class="col-sm-3">
 							<input type="submit" th:value="#{register-btn}" class="btn btn-primary text-light rounded-pill">
 						</div>
 					</div>

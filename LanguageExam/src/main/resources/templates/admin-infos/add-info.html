@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h4 th:text="#{add-info-long}"></h4>
@@ -38,10 +38,10 @@
 					</div>
 				</div>
 				<div class="row m-3 justify-content-end">
-					<div class="col-3">
+					<div class="col-sm-3 col-6">
 						<a th:href="@{/admin-infos-for-admin}" th:text="#{back}"></a>
 					</div>
-					<div class="col-3">
+					<div class="col-sm-3 col-6">
 						<input type="submit" th:value="#{add-info-btn}" class="btn btn-danger">
 					</div>
 				</div>

@@ -7,22 +7,22 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 700px;">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h3 th:text="#{complete-booking}"></h3>
 				</div>
 			</div>
 			<div class="p-3 justify-content-center">
-				<div class="border border-dark" style="width: 600px; height: 200px; background-color: darkgray;">
+				<div class="border border-dark" style="height: 200px; background-color: darkgray;">
 					<div class="row mt-5 justify-content-center">
-						<div class="col-4">
-							<h5 th:text="#{complete-booking-msg}"></h5>
+						<div class="col-sm-4">
+							<h5 th:text="#{complete-booking-msg}" class="text-center"></h5>
 						</div>
 					</div>
 					<div class="row justify-content-center">
-						<div class="col-4">
-							<a th:href="@{/exam-schedule}" th:text="#{exam-schedule-link}"></a>
+						<div class="col-sm-4">
+							<div class="text-center"><a th:href="@{/exam-schedule}" th:text="#{exam-schedule-link}"></a></div>
 						</div>
 					</div>
 				</div>

@@ -7,35 +7,41 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 700px;">
+		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h3 th:text="#{account-info}"></h3>
 				</div>
 			</div>
-			<div class="p-3 justify-content-center">
-				<div class="border border-dark" style="width: 600px; height: 200px; background-color: darkgray;">
+			<div class="row p-3 justify-content-center">
+				<div class="col-10 border border-dark"  style="background-color: darkgray;">
 					<div class="row mt-5 justify-content-center">
-						<div class="col-2"></div>
-						<div class="col-10">
-							<h5 th:text="#{name} + ':' + ${account.name}"></h5>
+						<div class="col-sm-3">
+							<h5 th:text="#{name} + ':'"></h5>
+						</div>
+						<div class="col-sm-9">
+							<h5 th:text="${account.name}"></h5>
 						</div>
 					</div>
 					<div class="row mt-2 justify-content-center">
-						<div class="col-2"></div>
-						<div class="col-10">
-							<h5 th:text="#{mail} + ':' + ${account.mail}"></h5>
+						<div class="col-sm-3">
+							<h5 th:text="#{mail} + ':'"></h5>
+						</div>
+						<div class="col-sm-9">
+							<h5 th:text="${account.mail}"></h5>
 						</div>
 					</div>
-					<div class="row mt-2 justify-content-center">
-						<div class="col-2"></div>
-						<div class="col-10">
-							<h5 th:text="#{address} + ':' + ${account.pref} + ${account.city} + ${account.town} + ${account.building}"></h5>
+					<div class="row mb-5 mt-2 justify-content-center">
+						<div class="col-sm-3">
+							<h5 th:text="#{address} + ':'"></h5>
+						</div>
+						<div class="col-sm-9">
+							<h5 th:text="${account.pref} + ${account.city} + ${account.town} + ${account.building}"></h5>
 						</div>
 					</div>
 				</div>
 				<div class="row m-3 justify-content-end">
-					<div class="col-10">
+					<div class="col-sm-sm-10">
 						<div class="text-end"><a th:href="@{/change-account-info}" th:text="#{change-account-info-btn}" class="btn btn-primary text-light"></a></div>
 					</div>
 				</div>

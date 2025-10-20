@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container" style="width: 800px;">
+		<div class="container">
 			<div class="row p-1">
 				<div class="col-3" style="background-color: darkblue;">
 					<h4 th:text="${subject.subject}" class="text-light"></h4>
@@ -30,15 +30,38 @@
 						<div th:text="#{fee-msg}"></div>
 					</div>
 				</div>
-				<div th:each="place:${grade.placeList}">
+				<div th:each="place : ${grade.placeList}">
 					<div class="row">
 						<div class="col-4">
 							<details>
 								<summary th:text="${place.place}" class="text-light" style="background-color: darkblue;"></summary>
-								<div th:each="date:${place.examInfoList}" th:text="${#dates.format(date.examDate, 'yyyy年MM月dd日(E)')}" style="background-color: darkgrey;"></div>
+								<div th:each="date : ${place.examInfoList}" th:text="${#dates.format(date.examDate, 'yyyy年MM月dd日(E)')}" style="background-color: darkgrey;"></div>
+								<div th:if="${place.examInfoList.size == 0}" th:text="#{no-exam-date-msg}" style="background-color: darkgrey;"></div>
 							</details>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class="col">
+					<h6 th:text="#{fees}"></h6>
+				</div>
+			</div>
+			<div th:each="fee:${fees}" style="display: inline-block; width: 100px;" class="mb-3">
+				<div class="row">
+					<div class="col" style="background-color: darkblue;">
+						<div th:text="${fee.grades.grade}" class="text-light"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col" style="background-color: rgb(128, 128, 128);">
+						<div th:text="${fee.fee} + #{yen}"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row m-3">
+				<div class="col">
+					<div><a th:href="@{/exams-guide}" th:text="#{back-exam-guide}"></a></div>
 				</div>
 			</div>
 		</div>

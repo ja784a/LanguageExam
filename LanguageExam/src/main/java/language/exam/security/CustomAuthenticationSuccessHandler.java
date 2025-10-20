@@ -18,7 +18,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		boolean isAdmin = authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		
 		if (isAdmin) {
-			response.sendRedirect("/admin-exams-for-admin");
+			response.sendRedirect("/admin-exams-for-admin?page=0");
 		} else {
 			response.sendRedirect("/exams-guide")
 ;		}

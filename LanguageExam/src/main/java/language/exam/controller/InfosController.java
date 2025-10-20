@@ -19,9 +19,13 @@ public class InfosController {
 	public String getInfosDetails(@PathVariable Integer id, Model model) {
 		Infos info = infosService.getInfo(id);
 		
-		model.addAttribute("info", info);
-		
-		return "infos/info-details";
+		if (info == null) {
+			return "error/error";
+		} else {
+			model.addAttribute("info", info);
+			
+			return "infos/info-details";
+		}
 	}
 	
 }
