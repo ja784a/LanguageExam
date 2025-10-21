@@ -57,11 +57,15 @@ public class ExamsControllerForAdmin {
 		
 		int allExams = examInfosService.countExamInfosForAdmin();
 		
+		if (allExams == 0) {
+			allExams = 1;
+		}
+		
 		List<ExamInfos> examInfos = examInfosService.getExamInfosForAdmin(size, offset);
 		
 		Page<ExamInfos> resultPage = new PageImpl<>(examInfos, pageable, allExams);
 		
-		if (page >= resultPage.getTotalPages() || page < 0) {
+		if (page > resultPage.getTotalPages() ||  page < 0) {
 			return "error/error";
 		} else {
 			model.addAttribute("examInfos", examInfos);
