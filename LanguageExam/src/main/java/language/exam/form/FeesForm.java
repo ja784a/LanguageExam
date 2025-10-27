@@ -1,11 +1,16 @@
 package language.exam.form;
 
-import java.util.List;
-
-import language.exam.domain.exams.model.Subjects;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class FeesForm {
-	private List<Subjects> subjects;
+	private Integer id;
+	
+	@NotNull
+	@Max(1000000)
+	@Min(0)
+	private Integer fee;
 }

@@ -20,7 +20,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		if (isAdmin) {
 			response.sendRedirect("/admin-exams-for-admin?page=0");
 		} else {
-			response.sendRedirect("/exams-guide")
+			response.sendRedirect("/")
 ;		}
 	}
 }

@@ -9,7 +9,7 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<form th:action="@{/edit-fees-for-admin}" method="post" th:object="${feesForm}">
+			<form th:action="@{/edit-fees-for-admin}" method="post" th:object="${feesListForm}">
 				<div class="row m-3 justify-content-center">
 					<div class="col-sm-5">
 						<h4 th:text="#{edit-fees}"></h4>
@@ -28,9 +28,13 @@
 									</div>
 								</div>
 								<div class="col-sm-2 col-6">
-									<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}" style="display: flex;">
-										<div><input type="text" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}"></div>
-										<div th:text="#{yen}"></div>
+									<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}">
+										<div style="display: flex;">
+											<div><input type="text" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
+												<div class="invalid-feedback" th:errors="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}"></div>
+											</div>
+											<div th:text="#{yen}"></div>
+										</div>
 										<input type="hidden" th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.id}">
 									</div>
 								</div>

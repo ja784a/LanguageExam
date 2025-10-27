@@ -34,7 +34,7 @@
 		from grades
 		join places
 		left outer join (
-		 select * from exam_infos where subject_id = #{subjectId} 
+		 select * from exam_infos where subject_id = #{subjectId} and cancel = 0 
 		) ei
 		 on grades.id = grade_id and places.id = place_id
 		order by p_id asc, g_id asc

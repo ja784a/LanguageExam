@@ -66,6 +66,7 @@ public class BookingChangeController {
 			model.addAttribute("places", places);
 			
 			selectPlaceForm.setSubjectId(examInfo.getSubjectId());
+			selectPlaceForm.setPlaceId(examInfo.getPlaces().getId());
 	
 			session.setAttribute("gradeId", examInfo.getGradeId());
 			session.setAttribute("oldExamId", examId);
@@ -100,6 +101,8 @@ public class BookingChangeController {
 		
 		Integer examId = (Integer) session.getAttribute("oldExamId");
 		model.addAttribute("oldExamId", examId);
+		
+		selectExamDateForm.setExamId(examId);
 		
 		return "booking-change/change-exam-date";
 	}

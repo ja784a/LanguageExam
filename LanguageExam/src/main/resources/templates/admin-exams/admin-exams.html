@@ -20,7 +20,7 @@
 			<div class="row justify-content-center">
 				<div class="col-10 border border-dark">
 					<div th:each="examInfo, stat :${examInfos}">
-						<div class="row border border-dark" th:classappend="${stat.index % 2 == 0} ?  'bg-secondary' : ' '">
+						<div class="row border border-dark" th:classappend="${stat.index % 2 == 0} ?  'bg-secondary-subtle' : ' '">
 							<div class="col-sm-4">
 								<h5 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade}"></h5>
 							</div>
@@ -45,28 +45,18 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-auto">
-					<nav aria-label="pagination">
-						<ul class="pagination">
-							<li class="page-item bg-light">
-								<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.getNumber()} - 1)}" aria-label="前へ" th:classappend="${resultPage.getNumber() <= 0} ? 'disabled'">
-									<span aria-hidden="true">&lsaquo;</span>
-									<span class="visually-hidden">前へ</span>
-								</a>
+					<ul class="pagination">
+						<div th:each="i:${#numbers.sequence(0, resultPage.totalPages - 1)}">
+							<li class="page-item">
+								<div th:if="${resultPage.number == i}">
+									<a class="page-link disabled"  th:text="${i + 1}"></a>
+								</div>
+								<div th:if="${resultPage.number != i}">
+									<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number + 1})}" th:text="${i + 1}"></a>
+								</div>
 							</li>
-							<li th:each="i:${#numbers.sequence(0, resultPage.getTotalPages() - 1)}" class="page-item bg-light">
-								<span th:if="i == ${resultPage.getNumber()}"><span th:text="${i}"></span></span>
-								<a th:if="i != ${resultPage.getNumber()}" class="page-link" th:href="@{/admin-exams-for-admin (page = ${i})}" th:classappend="${resultPage.getNumber() == i} ? 'bg-primary text-light disabled'">
-									<span th:text="${i} + 1"></span>
-								</a>
-							</li>
-							<li class="page-item bg-light">
-								<a class="page-link" th:href="@{/admin-exams-for-admin (page = ${resultPage.getNumber()} + 1)}" aria-label="次へ" th:classappend="${resultPage.getNumber() == resultPage.getTotalPages() - 1} ? 'disabled'">
-									<span aria-hidden="true">&rsaquo;</span>
-									<span class="visually-hidden">次へ</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
+						</div>
+					</ul>
 				</div>
 			</div>
 		</div>

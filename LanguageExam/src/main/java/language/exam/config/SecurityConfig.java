@@ -38,7 +38,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.requestMatchers(mvc.pattern("/register-account")).permitAll()
-				.requestMatchers(mvc.pattern("/exams-guide")).permitAll()
+				.requestMatchers(mvc.pattern("/")).permitAll()
 				.requestMatchers(mvc.pattern("/exam-details/{*}")).permitAll()
 				.requestMatchers(mvc.pattern("/info-details/{*}")).permitAll()
 				.requestMatchers(mvc.pattern("/admin-exams-for-admin/{*}")).hasAuthority("ROLE_ADMIN")
@@ -60,7 +60,7 @@ public class SecurityConfig {
 				.failureUrl("/login?error")
 				.usernameParameter("mail")
 				.passwordParameter("pass")
-				.defaultSuccessUrl("/exams-guide", true)
+				.defaultSuccessUrl("/", true)
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
 		).logout(logout -> logout

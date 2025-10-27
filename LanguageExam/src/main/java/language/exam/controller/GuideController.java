@@ -41,7 +41,7 @@ public class GuideController {
 	@Autowired
 	private FeesService feesService;
 	
-	@GetMapping("/exams-guide")
+	@GetMapping("/")
 	public String getExamGuide(Model model) {
 		List<Subjects> subjects = subjectsService.getAllSubjects();
 		

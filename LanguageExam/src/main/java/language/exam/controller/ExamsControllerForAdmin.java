@@ -1,5 +1,7 @@
 package language.exam.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -65,7 +67,7 @@ public class ExamsControllerForAdmin {
 		
 		Page<ExamInfos> resultPage = new PageImpl<>(examInfos, pageable, allExams);
 		
-		if (page > resultPage.getTotalPages() ||  page < 0) {
+		if (page >= resultPage.getTotalPages() ||  page < 0) {
 			return "error/error";
 		} else {
 			model.addAttribute("examInfos", examInfos);
@@ -86,6 +88,15 @@ public class ExamsControllerForAdmin {
 		
 		List<Places> places = placesService.getAllPlaces();
 		model.addAttribute("places", places);
+		
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DATE, 31);
+		
+		Date afterOneMonth = calendar.getTime();
+		
+		addExamForm.setExamDate(afterOneMonth);
 		
 		return "admin-exams/add-exam";
 	}
@@ -113,7 +124,7 @@ public class ExamsControllerForAdmin {
 			changeExamDateForm.setOldDate(examInfo.getExamDate());
 			changeExamDateForm.setId(id);
 			changeExamDateForm.setComments(examInfo.getComments());
-			return "admin-exams/change-exam-date";
+			changeExamDateForm.setExamDate(examInfo.getExamDate());		return "admin-exams/change-exam-date";
 		}
 	}
 	
