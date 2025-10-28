@@ -58,13 +58,12 @@
 		join places 
 		on place_id = places.id 
 		where exam_date &gt;= curdate()  
-		order by exam_date asc
+		order by exam_date asc 
 		limit #{size} offset #{offset} 
 	</select>
 	
 	<select id="countExamInfosForAdmin" resultType="int">
 		select count(*) from exam_infos 
-		where exam_date &gt; curdate() + interval 1 month 
 	</select>
 	
 	<insert id="insertExamInfo">

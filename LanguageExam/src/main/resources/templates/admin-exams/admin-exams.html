@@ -46,16 +46,22 @@
 			<div class="row justify-content-center">
 				<div class="col-auto">
 					<ul class="pagination">
-						<div th:each="i:${#numbers.sequence(0, resultPage.totalPages - 1)}">
-							<li class="page-item">
-								<div th:if="${resultPage.number == i}">
-									<a class="page-link disabled"  th:text="${i + 1}"></a>
-								</div>
-								<div th:if="${resultPage.number != i}">
-									<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number + 1})}" th:text="${i + 1}"></a>
-								</div>
-							</li>
-						</div>
+						<li class="page-item" th:if="${resultPage.hasPrevious}">
+							<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number} - 1)}" th:text="#{before}"></a>
+						</li>
+						<li class="page-item" th:each="i:${#numbers.sequence(0, resultPage.totalPages - 1)}">
+							<span th:if="${i == resultPage.number}">
+								<span class="page-link disabled" th:text="${i + 1}"></span>
+							</span>
+							<div th:if="${i != resultPage.number}">
+								<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${i})}">
+									<span th:text="${i + 1}"></span>
+								</a>
+							</div>
+						</li>
+						<li class="page-item" th:if="${resultPage.hasNext}">
+							<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number} + 1)}" th:text="#{next}"></a>
+						</li>
 					</ul>
 				</div>
 			</div>
