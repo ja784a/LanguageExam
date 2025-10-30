@@ -120,11 +120,15 @@ public class ExamsControllerForAdmin {
 		if (examInfo == null) {
 			return "error/error";
 		} else {
+			if (changeExamDateForm.getExamDate() == null) {
+				changeExamDateForm.setOldDate(examInfo.getExamDate());
+				changeExamDateForm.setId(id);
+				changeExamDateForm.setExamDate(examInfo.getExamDate());	
+				changeExamDateForm.setComments(examInfo.getComments());
+			}
 			model.addAttribute("examInfo", examInfo);
-			changeExamDateForm.setOldDate(examInfo.getExamDate());
-			changeExamDateForm.setId(id);
-			changeExamDateForm.setComments(examInfo.getComments());
-			changeExamDateForm.setExamDate(examInfo.getExamDate());		return "admin-exams/change-exam-date";
+			
+			return "admin-exams/change-exam-date";
 		}
 	}
 	

@@ -22,7 +22,7 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<input type="text" th:field="*{title}" th:errorclass="is-invalid" style="width: 500px;">
+						<input type="text" th:field="*{title}" th:errorclass="is-invalid" class="col-10">
 						<div class="invalid-feedback" th:errors="*{title}"></div>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<textarea th:field="*{content}" th:errorclass="is-invalid" style="width: 500px;"></textarea>
+						<textarea th:field="*{content}" th:errorclass="is-invalid" class="col-10"></textarea>
 						<div class="invalid-feedback" th:errors="*{content}"></div>
 					</div>
 				</div>

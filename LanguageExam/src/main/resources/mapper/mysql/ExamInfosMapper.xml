@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="selectExamInfo" resultMap="examInfos">
-		select  exam_infos.id as e_id, exam_date, exam_infos.subject_id, exam_infos.grade_id, subjects.id, subjects.subject, grades.id as g_id, grades.grade, places.id as p_id, places.place from exam_infos 
+		select  exam_infos.id as e_id, exam_date, comments, exam_infos.subject_id, exam_infos.grade_id, subjects.id, subjects.subject, grades.id as g_id, grades.grade, places.id as p_id, places.place from exam_infos 
 		join subjects 
 		on subject_id = subjects.id 
 		join grades 
