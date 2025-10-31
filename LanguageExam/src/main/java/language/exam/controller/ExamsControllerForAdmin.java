@@ -98,6 +98,7 @@ public class ExamsControllerForAdmin {
 		
 		addExamForm.setExamDate(afterOneMonth);
 		
+		model.addAttribute("afterOneMonth", afterOneMonth);		
 		return "admin-exams/add-exam";
 	}
 	

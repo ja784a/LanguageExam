@@ -53,7 +53,7 @@
 						<h6 th:text="#{exam-date}"></h6>
 					</div>
 					<div class="col-sm-10 col-6">
-						<input type="date" th:field="*{examDate}" th:errorclass="is-invalid">
+						<input type="date" th:field="*{examDate}" th:errorclass="is-invalid" min="${afterOneMonth}">
 						<div class="invalid-feedback" th:errors="*{examDate}"></div>
 					</div>
 				</div>

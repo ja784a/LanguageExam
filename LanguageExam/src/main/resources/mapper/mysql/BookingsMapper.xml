@@ -29,6 +29,7 @@
 		on exam_infos.place_id = places.id 
 		where exam_infos.exam_date &gt;= curdate() 
 		and account_id = #{accountId} 
+		order by exam_date asc 
 	</select>
 	
 	<select id="countBookings" resultType="int">

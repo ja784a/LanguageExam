@@ -9,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import language.exam.domain.exams.model.ExamInfos;
@@ -45,9 +45,11 @@ public class SelectController {
 	@Autowired
 	private FeesService feesService;
 	
-	@GetMapping("/select-grade/{id}")
-	public String getSelectGrade(@PathVariable Integer id, @ModelAttribute SelectGradeForm selectGradeForm, Model model) {
-		Subjects subject = subjectsService.getSubject(id);
+	@GetMapping("/select-grade")
+	public String getSelectGrade(HttpSession session, @ModelAttribute SelectGradeForm selectGradeForm, Model model) {
+		Integer subjectId = (Integer) session.getAttribute("subjectId");
+		
+		Subjects subject = subjectsService.getSubject(subjectId);
 		
 		if (subject == null) {
 			return "error/error";
@@ -69,11 +71,18 @@ public class SelectController {
 		}
 	}
 	
-	@PostMapping("/select-grade/{id}")
-	public String postSelectGrade(HttpSession session, @Validated SelectGradeForm selectGradeForm, BindingResult result , @PathVariable("id") Integer id, Model model) {
+	@PostMapping("/call-select-grade")
+	public String postCallSelectgrade(HttpSession session, @RequestParam("subjectId") Integer subjectId, Model model) {
+		session.setAttribute("subjectId", subjectId);
+		
+		return "redirect:/select-grade";
+	}
+	
+	@PostMapping("/select-grade")
+	public String postSelectGrade(HttpSession session, @Validated SelectGradeForm selectGradeForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			
-			return getSelectGrade(id, selectGradeForm, model);
+			return getSelectGrade(session, selectGradeForm, model);
 		}
 		session.setAttribute("subjectId", selectGradeForm.getSubjectId());
 		session.setAttribute("gradeId", selectGradeForm.getGradeId());
