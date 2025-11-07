@@ -1,5 +1,6 @@
 package language.exam.form;
 
+import jakarta.validation.constraints.NotNull;
 import language.exam.annotation.ValidGradeId;
 import lombok.Data;
 
@@ -7,6 +8,7 @@ import lombok.Data;
 public class SelectGradeForm {
 	private Integer subjectId;
 	
-	@ValidGradeId
+	@NotNull(groups = ValidGroup1.class)
+	@ValidGradeId(groups = ValidGroup2.class)
 	private Integer gradeId;
 }

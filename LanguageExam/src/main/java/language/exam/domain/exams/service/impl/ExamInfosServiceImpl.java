@@ -62,4 +62,5 @@ public class ExamInfosServiceImpl implements ExamInfosService {
 	public void updateCancel(ExamInfos examInfo) {
 		mapper.updateCancel(examInfo);
 	}
+	
 }

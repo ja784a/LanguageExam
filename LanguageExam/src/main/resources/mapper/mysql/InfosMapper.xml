@@ -4,6 +4,7 @@
 <mapper namespace="language.exam.repository.InfosMapper">
 	<select id="selectAllInfos" resultType="Infos">
 		select * from infos 
+		order by post_date desc 
 	</select>
 	
 	<select id="selectInfo" resultType="Infos">

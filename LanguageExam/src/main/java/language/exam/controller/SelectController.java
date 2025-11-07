@@ -79,7 +79,7 @@ public class SelectController {
 	}
 	
 	@PostMapping("/select-grade")
-	public String postSelectGrade(HttpSession session, @Validated SelectGradeForm selectGradeForm, BindingResult result, Model model) {
+	public String postSelectGrade(HttpSession session, @Validated(GroupOrder.class) SelectGradeForm selectGradeForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			
 			return getSelectGrade(session, selectGradeForm, model);
@@ -107,7 +107,7 @@ public class SelectController {
 	}
 	
 	@PostMapping("/select-place")
-	public String postSelectPlace(HttpSession session, @ModelAttribute @Validated SelectPlaceForm selectPlaceForm, BindingResult result, Model model) {
+	public String postSelectPlace(HttpSession session, @ModelAttribute @Validated(GroupOrder.class) SelectPlaceForm selectPlaceForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return getSelectPlace(session, selectPlaceForm, model);
 		}

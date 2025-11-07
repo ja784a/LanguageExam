@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.validation.constraints.NotNull;
 import language.exam.annotation.NotDuplicatedExam;
 import language.exam.annotation.ValidDate;
 import language.exam.annotation.ValidGradeId;
@@ -16,16 +17,20 @@ import lombok.Data;
 public class AddExamInfoForm {
 	private Integer id;
 	
-	@ValidSubjectId
+	@NotNull(groups = ValidGroup1.class)
+	@ValidSubjectId(groups = ValidGroup2.class)
 	private Integer subjectId;
 	
-	@ValidGradeId
+	@NotNull(groups = ValidGroup1.class)
+	@ValidGradeId(groups = ValidGroup2.class)
 	private Integer gradeId;
 	
-	@ValidDate
+	@NotNull(groups = ValidGroup1.class)
+	@ValidDate(groups = ValidGroup2.class)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date examDate;
 	
-	@ValidPlaceId
+	@NotNull(groups = ValidGroup1.class)
+	@ValidPlaceId(groups = ValidGroup2.class)
 	private Integer placeId;
 }

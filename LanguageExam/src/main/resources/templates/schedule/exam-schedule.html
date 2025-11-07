@@ -27,63 +27,65 @@
 						</div>
 					</div>
 					<div th:each="booking:${bookings}">
-						<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0}">
-							<div class="row border borer-dark" style="background-color: darkgrey;">	
-								<div class="col">
-									<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
+						<div class="border border-dark">
+							<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0}">
+								<div class="row">	
+									<div class="col-4">
+										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div th:if="${booking.examInfos.oldDate != null} and ${booking.examInfos.cancel == 0}">
-							<div class="row border borer-dark" style="background-color: darkgrey;">
-								<div class="col-4">
-									<h6 th:text="${#dates.format(booking.examInfos.oldDate, 'yyyy年MM月dd日(E)')}" class="opacity-50"></h6>
-								</div>
-								<div class="col-1">
-									<h6 th:text="'→'"></h6>
-								</div>
-								<div class="col-4">
-									<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
-								</div>
-								<div class="col-3">
-									<h6 th:text="#{date-change}" class="text-danger"></h6>
-								</div>
-							</div>
-						</div>
-						<div th:if="${booking.examInfos.cancel == 1}">
-							<div class="row border borer-dark" style="background-color: darkgrey;">
-								<div class="col-7">
-									<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}" class="opacity-50"></h6>
-								</div>
-								<div class="col-5">
-									<h6 th:text="#{exam-canceled}" class="text-danger"></h6>
+							<div th:if="${booking.examInfos.oldDate != null} and ${booking.examInfos.cancel == 0}">
+								<div class="row" style="background-color: rgb(255, 255, 255);">
+									<div class="col-4">
+										<h6 th:text="${#dates.format(booking.examInfos.oldDate, 'yyyy年MM月dd日(E)')}"></h6>
+									</div>
+									<div class="col-1">
+										<h6 th:text="'→'"></h6>
+									</div>
+									<div class="col-4">
+										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
+									</div>
+									<div class="col-3">
+										<h6 th:text="#{date-change}" class="text-danger"></h6>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div th:if="${booking.examInfos.cancel == 0}">
-							<div class="row border borer-dark">
-								<div class="col-6">
-									<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
-								</div>
-								<div class="col-sm-4">
-									<a th:href="@{/change-place/{id} (id = ${booking.examId})}" th:text="#{change-booking}" class="p-0 btn btn-primary text-lignt"></a>
-								</div>
-	
-								<div class="col-sm-2">
-									<a th:href="@{/confirm-cancel-exam/{id} (id = ${booking.examId})}" th:text="#{cancel-exam}" class="p-0 btn btn-danger text-light"></a>
-								</div>
-								<div class="col">
-									<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
+							<div th:if="${booking.examInfos.cancel == 1}">
+								<div class="row" style="background-color: rgb(255, 255, 255);">
+									<div class="col-7">
+										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
+									</div>
+									<div class="col-5">
+										<h6 th:text="#{exam-canceled}" class="text-danger"></h6>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div th:if="${booking.examInfos.cancel == 1}">
-							<div class="row border borer-dark">
-								<div class="col-12">
-									<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
+							<div th:if="${booking.examInfos.cancel == 0}">
+								<div class="row">
+									<div class="col-6">
+										<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
+									</div>
+									<div class="col-sm-4">
+										<a th:href="@{/change-place/{id} (id = ${booking.examId})}" th:text="#{change-booking}" class="p-0 btn btn-primary text-lignt"></a>
+									</div>
+		
+									<div class="col-sm-2">
+										<a th:href="@{/confirm-cancel-exam/{id} (id = ${booking.examId})}" th:text="#{cancel-exam}" class="p-0 btn btn-danger text-light"></a>
+									</div>
+									<div class="col">
+										<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
+									</div>
 								</div>
-								<div class="col">
-									<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
+							</div>
+							<div th:if="${booking.examInfos.cancel == 1}">
+								<div class="row">
+									<div class="col-12">
+										<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
+									</div>
+									<div class="col">
+										<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
+									</div>
 								</div>
 							</div>
 						</div>

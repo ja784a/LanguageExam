@@ -18,17 +18,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid" style="background-color: darkgrey;">
+		<div class="container-fluid" style="background-color: rgb(0, 0, 0);">
 			<div sec:authorize="isAnonymous()">
 				<nav class="navbar p-0">
 					<ul class="nav">
 						<li class="nav-item">
-							<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/}"></a>
+							<a class="nav-link text-light" th:text="#{exams-guide}" th:href="@{/}"></a>
 						</li>
 					</ul>
 					<ul class="nav">
 						<li class="nav-item">
-							<a class="nav-link text-dark" th:text="#{login}" th:href="@{/login}"></a>
+							<a class="nav-link text-light" th:text="#{login}" th:href="@{/login}"></a>
 						</li>
 					</ul>
 				</nav>
@@ -38,15 +38,15 @@
 					<nav class="navbar">
 						<ul class="nav">
 							<li class="nav-item">
-								<a class="nav-link text-dark" th:text="#{exams-guide}" th:href="@{/}"></a>
+								<a class="nav-link text-light" th:text="#{exams-guide}" th:href="@{/}"></a>
 							</li>
 						</ul>
 						<ul class="nav justify-content-end">
 							<li class="nav-item">
-								<a class="nav-link text-dark" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
+								<a class="nav-link text-light" th:text="#{exam-schedule}" th:href="@{/exam-schedule}"></a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle text-black" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
+								<a class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<li><a th:href="@{/account-info}" class="dropdown-item nav-link text-dark" th:text="#{account-info}"></a></li>
 									<form th:action="@{/logout}" method="post">
@@ -61,7 +61,7 @@
 					<nav class="navbar">
 						<ul class="nav">
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle text-black" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
+								<a class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.name}"></a>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<li><a th:href="@{/admin-exams-for-admin}" th:text="#{admin-exams-for-admin}" class="dropdown-item nav-link text-dark"></a></li>
 									<li><a th:href="@{/admin-fees-for-admin}" th:text="#{admin-fees-for-admin}" class="dropdown-item nav-link text-dark"></a></li>
@@ -86,8 +86,8 @@
 	<!-- メインコンテンツここまで -->
 	
 	<!-- フッター -->
-	<footer style="background-color: darkgrey;">
-		<span class="nav-brand" th:text="#{logo}"></span>
+	<footer style="background-color: rgb(0, 0, 0);">
+		<span class="nav-brand text-light" th:text="#{logo}"></span>
 	</footer>
 	<!-- フッターここまで -->
 

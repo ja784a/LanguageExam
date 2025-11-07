@@ -20,7 +20,7 @@
 			<div class="row justify-content-center">
 				<div class="col-11 border border-dark">
 					<div th:each="examInfo, stat :${examInfos}">
-						<div class="row border border-dark" th:classappend="${stat.index % 2 == 0} ?  'bg-secondary-subtle' : ' '">
+						<div class="row border border-dark">
 							<div class="col-sm-4">
 								<h5 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade}"></h5>
 							</div>

@@ -22,6 +22,7 @@
 		and subject_id = #{subjectId} 
 		and grade_id = #{gradeId} 
 		and place_id = #{placeId} 
+		order by exam_date asc 
 	</select>
 	
 	<select id="selectExamInfo" resultMap="examInfos">
@@ -46,7 +47,8 @@
 		where cancel = 0 
 		and subject_id = #{subjectId} 
 		and grade_id = #{gradeId} 
-		and place_id = #{placeId}  
+		and place_id = #{placeId} 
+		order by exam_date asc  
 	</select>
 	
 	<select id="selectExamInfosForAdmin" resultMap="examInfos">
@@ -58,7 +60,7 @@
 		join places 
 		on place_id = places.id 
 		where exam_date &gt;= curdate()  
-		order by exam_date asc 
+		order by exam_date asc, subject_id asc, grade_id asc, place_id asc 
 		limit #{size} offset #{offset} 
 	</select>
 	

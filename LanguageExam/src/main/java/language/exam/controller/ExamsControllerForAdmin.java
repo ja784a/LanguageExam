@@ -103,7 +103,7 @@ public class ExamsControllerForAdmin {
 	}
 	
 	@PostMapping("/add-exam-for-admin")
-	public String postAddExam(@Validated AddExamInfoForm addExamInfoForm, BindingResult result, Model model) {
+	public String postAddExam(@Validated(GroupOrder.class) AddExamInfoForm addExamInfoForm, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			return getAddExam(addExamInfoForm, model);
 		} else {
