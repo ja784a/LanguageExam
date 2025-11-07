@@ -134,7 +134,7 @@ public class ExamsControllerForAdmin {
 	}
 	
 	@PostMapping("/change-exam-date-for-admin/{id}")
-	public String postChangeExamDate(@PathVariable("id") Integer id, @Validated(GroupOrder.class)  ChangeExamDateForm changeExamDateForm, BindingResult result, Model model) {
+	public String postChangeExamDate(@PathVariable("id") Integer id, @Validated  ChangeExamDateForm changeExamDateForm, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return getChangeExamDate(id, changeExamDateForm, model);
 		} else {

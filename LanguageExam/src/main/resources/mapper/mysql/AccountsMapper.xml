@@ -25,7 +25,7 @@
 	
 	<select id="selectAccount" resultMap="accounts">
 		select * from accounts 
-		where mail = #{mail} 
+		where mail = #{mail}  
 	</select>
 	
 	<update id="updateAccount">

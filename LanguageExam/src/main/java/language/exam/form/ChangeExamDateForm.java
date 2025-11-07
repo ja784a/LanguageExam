@@ -14,8 +14,8 @@ import lombok.Data;
 public class ChangeExamDateForm {
 	private Integer id;
 	
-	@NotNull(groups = ValidGroup1.class)
-	@ValidDate(groups = ValidGroup2.class)
+	@NotNull
+	@ValidDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date examDate;
 	
@@ -23,8 +23,8 @@ public class ChangeExamDateForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date oldDate;
 
-	@NotBlank(groups = ValidGroup1.class)
-	@Size(max = 100, groups = ValidGroup1.class)
+	@NotBlank
+	@Size(max = 100)
 	private String comments;
 	
 }

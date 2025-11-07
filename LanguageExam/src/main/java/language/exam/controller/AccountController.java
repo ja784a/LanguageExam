@@ -2,7 +2,10 @@ package language.exam.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,7 @@ import language.exam.domain.exams.service.AccountsService;
 import language.exam.form.ChangeAccountInfoForm;
 import language.exam.form.ChangePasswordForm;
 import language.exam.form.RegisterAccountForm;
+import language.exam.security.CustomUserDetails;
 
 @Controller
 public class AccountController {
@@ -67,16 +71,21 @@ public class AccountController {
 	}
 	
 	@PostMapping("/change-account-info")
-	public String postChangeAccountInfo(@Validated ChangeAccountInfoForm accountInfoForm, BindingResult result, @AuthenticationPrincipal(expression = "id") Integer id, String mail) {
-		accountInfoForm.setId(id);
+	public String postChangeAccountInfo(@Validated ChangeAccountInfoForm accountInfoForm, BindingResult result, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		accountInfoForm.setId(userDetails.getId());
 		if (result.hasErrors()) {
-			return getChangeAccountInfo(accountInfoForm, mail);
+			return getChangeAccountInfo(accountInfoForm, userDetails.getUsername());
 		} else {
+			userDetails = new CustomUserDetails(accountInfoForm.getMail(), userDetails.getPassword(), userDetails.getId(), userDetails.getName(), userDetails.getAuthorities());
+			
+			SecurityContext auth = SecurityContextHolder.getContext();
+			auth.setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, userDetails.getUsername(), userDetails.getAuthorities()));
+			
 			Accounts account = modelMapper.map(accountInfoForm, Accounts.class);
 			accountsService.updateAccount(account);
+			
+			return "redirect:/account-info";
 		}
-		
-		return "redirect:/account-info";
 	}
 	
 	
