@@ -11,7 +11,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-sm-5">
-					<h4 class="pt-1" th:text="#{your-schedule}"></h4>
+					<h3 class="pt-1" th:text="#{your-schedule}"></h3>
 				</div>
 				<div class="col-sm-5">
 					<div class="text-sm-end pt-2" th:text="#{today} + '    ' + ${#dates.format(today, 'yyyy年MM月dd日(E)')}"></div>
@@ -26,12 +26,12 @@
 							</div>
 						</div>
 					</div>
-					<div th:each="booking:${bookings}">
-						<div class="border border-dark">
+					<ul class="list-group" th:each="booking:${bookings}">
+						<li class="list-group-item border border-dark">
 							<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0}">
 								<div class="row">	
 									<div class="col-4">
-										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
+										<div th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></div>
 									</div>
 								</div>
 							</div>
@@ -88,20 +88,20 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						</li>
+					</ul>
 				</div>
 				<div class="row pt-3 justify-content-center">
 				<div class="col-10">
 					<h3 th:text="#{infos}"></h3>
 				</div>
 				<div class="row justify-content-center">
-					<div class="col-10 m-2 border border-dark" style=" height: 200px; overflow-y: scroll;">
-						<div th:each="info:${infos}">
+					<ul class="list-group col-10 m-2 border border-dark" style=" height: 200px; overflow-y: scroll;">
+						<li class="list-group-item" th:each="info:${infos}">
 							<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
 							<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
-						</div>	
-					</div>
+						</li>	
+					</ul>
 				</div>
 			</div>
 		</div>

@@ -11,7 +11,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<h4 th:text="#{edit-info-long}"></h4>
+					<h3 th:text="#{edit-info-long}"></h3>
 				</div>
 			</div>
 			<form th:action="@{/edit-info-for-admin/{id} (id = ${id})}" method="post" th:object="${addEditInfoForm}">
