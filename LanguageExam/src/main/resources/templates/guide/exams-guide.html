@@ -41,12 +41,17 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<ul class="list-group col-10 m-2 border border-dark" style=" height: 200px; overflow-y: scroll;">
-					<li class="list-group-item" th:each="info:${infos}">
-						<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
-						<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
-					</li>	
-				</ul>
+				<div class="col-10 m-2 border border-dark" style=" height: 200px; overflow-y: scroll;">
+					<div th:if="${infos.size == 0}">
+						<div th:text="#{no-infos-msg}" class="text-center m-5"></div>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item" th:each="info:${infos}">
+							<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
+							<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
+						</li>
+					</ul>	
+				</div>
 			</div>
 		</div>
 	</div>

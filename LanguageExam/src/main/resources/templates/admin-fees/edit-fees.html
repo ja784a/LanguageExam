@@ -30,7 +30,7 @@
 								<div class="col-sm-2 col-6">
 									<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}">
 										<div style="display: flex;">
-											<div><input type="number" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
+											<div><input type="number" min="0" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
 												<div class="invalid-feedback" th:errors="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}"></div>
 											</div>
 											<div th:text="#{yen}"></div>

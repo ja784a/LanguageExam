@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="row m-2 justify-content-center">
-				<div class="col-1l" style="overflow-y: scroll; ">
+				<div class="col-1l border border-dark" style="overflow-y: scroll; ">
 					<div th:if="${infos.size == 0}">
 						<div class="row justify-content-center">
 							<div class="col-5">
@@ -27,28 +27,26 @@
 							</div>
 						</div>
 					</div>
-					<ul class="list-group border border-dark" style="height: 300px;">
-						<li class="mw-100 list-group-item border border-dark">
-							<div th:each="info:${infos}">
-								<div class="row mt-3">
-									<div class="col-sm-6">
-										<div class="row">
-											<div class="col">
-												<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
-											</div>
+					<ul class="list-group" style="height: 300px;">
+						<li th:each="info:${infos}" class="list-group-item border border-dark">
+							<div class="row mt-3">
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col">
+											<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
 										</div>
-										<dvi class="row">
-											<dvi class="col">
-												<h5 th:text="${info.title}"></h5>
-											</dvi>
+									</div>
+									<dvi class="row">
+										<dvi class="col">
+											<h5 th:text="${info.title}"></h5>
 										</dvi>
-									</div>
-									<div class="col-sm-3 col-6">
-										<a th:href="@{/edit-info-for-admin/{id} (id = ${info.id})}" th:text="#{edit-info}" class="btn btn-primary"></a>
-									</div>
-									<div class="col-sm-3 col-6">
-										<a th:href="@{/delete-info-for-admin/{id} (id = ${info.id})}" th:text="#{delete-info}" class="btn btn-danger"></a>
-									</div>
+									</dvi>
+								</div>
+								<div class="col-sm-3 col-6">
+									<a th:href="@{/edit-info-for-admin/{id} (id = ${info.id})}" th:text="#{edit-info}" class="btn btn-primary"></a>
+								</div>
+								<div class="col-sm-3 col-6">
+									<a th:href="@{/delete-info-for-admin/{id} (id = ${info.id})}" th:text="#{delete-info}" class="btn btn-danger"></a>
 								</div>
 							</div>
 						</li>

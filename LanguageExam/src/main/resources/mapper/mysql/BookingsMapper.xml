@@ -6,6 +6,7 @@
 		<id column="id" property="id"></id>
 		<result column="account_id" property="accountId"></result>
 		<result column="exam_id" property="examId"></result>
+		<result column="inserted_datetime" property="insertedDateTime"></result>
 		<association property="examInfos" resultMap="language.exam.repository.ExamInfosMapper.examInfos"></association>
 		<association property="subjects" resultMap="language.exam.repository.SubjectsMapper.subjects"></association>
 		<association property="grades" resultMap="language.exam.repository.GradesMapper.grades"></association>
@@ -13,12 +14,12 @@
 	</resultMap>
 	
 	<insert id="insertBooking">
-		insert into bookings (account_id, exam_id) values 
-		(#{accountId}, #{examId})
+		insert into bookings (account_id, exam_id, inserted_datetime) values 
+		(#{accountId}, #{examId}, now() )
 	</insert>
 	
 	<select id="selectBookings" resultMap="bookings">
-		select bookings.exam_id, subjects.subject, grades.grade, places.place, exam_infos.id as e_id, exam_infos.exam_date, exam_infos.old_date, exam_infos.comments, exam_infos.cancel from bookings 
+		select bookings.exam_id, bookings.inserted_datetime, subjects.subject, grades.grade, places.place, exam_infos.id as e_id, exam_infos.exam_date, exam_infos.old_date, exam_infos.comments, exam_infos.cancel, exam_infos.updated_datetime from bookings 
 		join exam_infos 
 		on exam_id = exam_infos.id 
 		join subjects 

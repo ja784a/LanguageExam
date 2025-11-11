@@ -14,6 +14,7 @@ public class ExamInfos {
 	private Integer placeId;
 	private String comments;
 	private Integer cancel;
+	private Date updatedDateTime;
 	private Subjects subjects;
 	private Grades grades;
 	private Places places;

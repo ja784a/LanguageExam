@@ -28,14 +28,14 @@
 					</div>
 					<ul class="list-group" th:each="booking:${bookings}">
 						<li class="list-group-item border border-dark">
-							<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0}">
+							<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0} or ${booking.insertedDateTime} gt ${booking.examInfos.updatedDateTime}">
 								<div class="row">	
 									<div class="col-4">
-										<div th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></div>
+										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
 									</div>
 								</div>
 							</div>
-							<div th:if="${booking.examInfos.oldDate != null} and ${booking.examInfos.cancel == 0}">
+							<div th:if="${booking.examInfos.oldDate != null} and ${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} le ${booking.examInfos.updatedDateTime}">
 								<div class="row" style="background-color: rgb(255, 255, 255);">
 									<div class="col-4">
 										<h6 th:text="${#dates.format(booking.examInfos.oldDate, 'yyyy年MM月dd日(E)')}"></h6>
@@ -74,7 +74,7 @@
 										<a th:href="@{/confirm-cancel-exam/{id} (id = ${booking.examId})}" th:text="#{cancel-exam}" class="p-0 btn btn-danger text-light"></a>
 									</div>
 									<div class="col">
-										<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
+										<div th:if="${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} le ${booking.examInfos.updatedDateTime}" th:text="${booking.examInfos.comments}" class="text-danger"></div>
 									</div>
 								</div>
 							</div>
@@ -96,12 +96,17 @@
 					<h3 th:text="#{infos}"></h3>
 				</div>
 				<div class="row justify-content-center">
-					<ul class="list-group col-10 m-2 border border-dark" style=" height: 200px; overflow-y: scroll;">
-						<li class="list-group-item" th:each="info:${infos}">
-							<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
-							<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
-						</li>	
-					</ul>
+					<div class="col-10 m-2 border border-dark" style=" height: 200px; overflow-y: scroll;">
+						<div th:if="${infos.size == 0}">
+							<div th:text="#{no-infos-msg}" class="text-center m-5"></div>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item" th:each="info:${infos}">
+								<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
+								<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
+							</li>
+						</ul>	
+					</div>
 				</div>
 			</div>
 		</div>

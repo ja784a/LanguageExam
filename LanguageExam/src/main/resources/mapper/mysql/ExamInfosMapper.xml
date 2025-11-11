@@ -11,12 +11,13 @@
 		<result column="place_id" property="placeId"></result>
 		<result column="comments" property="comments"></result>
 		<result column="cancel" property="cancel"></result>
+		<result column="updated_datetime" property="updatedDateTime"></result>
 		<association property="subjects" resultMap="language.exam.repository.SubjectsMapper.subjects"></association>
 		<association property="grades" resultMap="language.exam.repository.GradesMapper.grades"></association>
 		<association property="places" resultMap="language.exam.repository.PlacesMapper.places"></association>
 	</resultMap>
 	<select id="selectExamInfosForUsers" resultMap="examInfos">
-		select id as e_id, exam_date from exam_infos 
+		select id as e_id, exam_date, old_date from exam_infos 
 		where exam_date &gt; curdate() + interval 1 month  
 		and cancel = 0 
 		and subject_id = #{subjectId} 
@@ -85,7 +86,8 @@
 		update exam_infos set 
 		exam_date = #{examDate}, 
 		old_date = #{oldDate}, 
-		comments = #{comments} 
+		comments = #{comments}, 
+		updated_datetime = now() 
 		where id = #{id} 
 	</update>
 	

@@ -48,8 +48,12 @@
 				</div>
 			</div>
 			<ul class="list-group d-flex flex-row" style="gap: 0;">
-				<li th:each="fee:${fees}" class="list-group-item border border-dark">
-					<div th:text="${fee.grades.grade}" class="w-100 text-light m-1" style="background-color: darkblue;"></div>
+				<li th:each="fee:${fees}" class="list-group-item border border-dark" style="background-color: darkblue; width:100px;">
+					<div th:text="${fee.grades.grade}" class="text-light m-1" ></div>
+				</li>
+			</ul>
+			<ul class="list-group d-flex flex-row" style="gap: 0;">
+				<li th:each="fee:${fees}" class="list-group-item border border-dark" style="width: 100px;">
 					<div th:text="${fee.fee} + #{yen}" class="p-0 m-0"></div>
 				</li>
 			</ul>

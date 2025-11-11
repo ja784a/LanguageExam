@@ -39,12 +39,14 @@ exam_date date not null,
 old_date date, 
 place_id bigint not null, 
 comments varchar(100), 
-cancel tinyint not null default 0 ); 
+cancel tinyint not null default 0, 
+updated_datetime datetime );
 
 create table bookings ( 
 id bigint not null auto_increment primary key, 
 account_id bigint not null, 
-exam_id bigint not null ); 
+exam_id bigint not null, 
+inserted_datetime datetime not null );
 
 create table infos ( 
 id bigint not null auto_increment primary key, 
