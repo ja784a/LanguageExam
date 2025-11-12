@@ -28,7 +28,7 @@
 					</div>
 					<ul class="list-group" th:each="booking:${bookings}">
 						<li class="list-group-item border border-dark">
-							<div th:if="${booking.examInfos.oldDate == null} and ${booking.examInfos.cancel == 0} or ${booking.insertedDateTime} gt ${booking.examInfos.updatedDateTime}">
+							<div th:if="${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} ge ${booking.examInfos.updatedDateTime}">
 								<div class="row">	
 									<div class="col-4">
 										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>

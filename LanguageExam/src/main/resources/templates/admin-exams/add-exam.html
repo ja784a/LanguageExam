@@ -19,8 +19,8 @@
 					<div class="col-sm-2 col-6">
 						<h6 th:text="#{subject}"></h6>
 					</div>
-					<div class="col-sm-10 col-6">
-						<select th:field="*{subjectId}" th:errorclass="is-invalid">
+					<div class="col-3">
+						<select th:field="*{subjectId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.subject}"></option>
 						</select>
 						<div class="invalid-feedback" th:errors="*{subjectId}"></div>
@@ -30,8 +30,8 @@
 					<div class="col-sm-2 col-6">
 						<h6 th:text="#{grade}"></h6>
 					</div>
-					<div class="col-sm-10 col-6">
-						<select th:field="*{gradeId}" th:errorclass="is-invalid">
+					<div class="col-3">
+						<select th:field="*{gradeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="grade:${grades}" th:value="${grade.id}" th:text="${grade.grade}"></option>
 						</select>
 						<div class="invalid-feedback" th:errors="*{gradeId}"></div>
@@ -41,8 +41,8 @@
 					<div class="col-sm-2 col-6">
 						<h6 th:text="#{place}"></h6>
 					</div>
-					<div class="col-sm-10 col-6">
-						<select th:field="*{placeId}" th:errorclass="is-invalid">
+					<div class="col-3">
+						<select th:field="*{placeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="place:${places}" th:value="${place.id}" th:text="${place.place}"></option>
 						</select>
 						<div class="invalid-feedback" th:errors="*{placeId}"></div>
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row  m-3 justify-content-end">
+				<div class="row  m-3 justify-content-end mt-5">
 					<div class="col-sm-3 col-6">
 						<div><a th:href="@{/admin-exams-for-admin}" th:text="#{back}"></a> </div>
 					</div>

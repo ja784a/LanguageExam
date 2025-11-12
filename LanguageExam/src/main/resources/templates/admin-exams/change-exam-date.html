@@ -35,16 +35,16 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col">
+					<div class="col mb-5">
 						<textarea th:field="*{comments}" th:errorclass="is-invalid" class="col-10"></textarea>
 						<div class="invalid-feedback" th:errors="*{comments}"></div>
 					</div>
 				</div>
-				<div class="row m-3">
-					<div class="col">
+				<div class="row mb-3 mt-5 justify-content-end">
+					<div class="col-sm-3 col-6">
 						<a th:href="@{/admin-exams-for-admin}" th:text="#{back}"></a>
 					</div>
-					<div class="col">
+					<div class="col-sm-3 col-6">
 						<input type="hidden" th:field="*{oldDate}">
 						<input type="hidden" th:field="*{id}">
 						<input type="submit" th:value="#{change-exam-date-btn-for-admin}" class="btn btn-danger">

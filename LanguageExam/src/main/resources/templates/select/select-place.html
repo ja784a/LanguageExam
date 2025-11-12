@@ -28,14 +28,14 @@
 			</div>
 			<form th:action="@{/select-place}" method="post" th:object="${selectPlaceForm}">
 				<div class="row pt-2 pb-5">
-					<div class="col-3">
-						<select th:field="*{placeId}" th:errorclass="is-invalid">
+					<div class="col-3 mb-5">
+						<select th:field="*{placeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
 						</select>
 						<div class="invalid-feedback" th:errors="*{placeId}"></div>
 					</div>
 				</div>
-				<div class="row pb-3 justify-content-end">
+				<div class="row pb-3 justify-content-end mt-5">
 					<div class="col-sm-3 col-6">
 						<a th:href="@{/select-grade}" th:text="#{back-select-grade}"></a>
 					</div>

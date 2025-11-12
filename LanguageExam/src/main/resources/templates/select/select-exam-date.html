@@ -43,8 +43,8 @@
 						</div>
 					</div>
 					<div th:if="${examDates.size != 0}">
-						<div class="col-3">
-							<select th:field="*{examId}" th:errorclass="is-invalid">
+						<div class="col-3 mb-5">
+							<select th:field="*{examId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 								<option th:each="date:${examDates}" th:text="${#dates.format(date.examDate, 'yyyy年MM月dd日(E)')}" th:value="${date.id}">
 								</option>
 							</select>
@@ -52,7 +52,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row pb-3 justify-content-end">
+				<div class="row pb-3 justify-content-end mt-5">
 					<div class="col-sm-3 col-6">
 						<a th:href="@{/select-place}" th:text="#{back-select-place}"></a>
 					</div>

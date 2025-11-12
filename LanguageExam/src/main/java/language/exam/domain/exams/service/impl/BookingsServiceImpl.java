@@ -1,5 +1,6 @@
 package language.exam.domain.exams.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,20 @@ public class BookingsServiceImpl implements BookingsService {
 	}
 	
 	public List<Bookings> getBookings(Integer accountId) {
-		return mapper.selectBookings(accountId);
+		List<Bookings> bookings = mapper.selectBookings(accountId);
+		
+		Date today = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(today);
+		calendar.add(Calendar.DATE, -1);
+		Date yesterday = calendar.getTime();
+		
+		for (Bookings b : bookings) {
+			if (b.getExamInfos().getUpdatedDateTime() == null) {
+				b.getExamInfos().setUpdatedDateTime(yesterday);
+			}
+		}
+		return bookings;
 	}
 	
 	public boolean isNotDuplicatedDate(Date examDate, Integer accountId) {
