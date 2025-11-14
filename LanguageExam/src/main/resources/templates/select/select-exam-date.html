@@ -54,7 +54,7 @@
 				</div>
 				<div class="row pb-3 justify-content-end mt-5">
 					<div class="col-sm-3 col-6">
-						<a th:href="@{/select-place}" th:text="#{back-select-place}"></a>
+						<a th:href="@{/select-place}" th:text="#{back-select-place}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>
 					<div class="col-sm-4 col-6" th:if="${examDates.size != 0}">
 						<input type="submit" th:value="#{confirm-booking-btn}" class="btn btn-primary rounded-pill">

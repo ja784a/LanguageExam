@@ -9,29 +9,29 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="row">
+			<div class="row justify-content-center">
+				<div class="col-sm-11">
 					<h3 th:text="#{exam-guide-header}"></h3>
 				</div>
 			</div>
 			<div th:each="subject:${subjects}">
-				<div class="row pt-1">
-					<div class="col-sm-4" style="background-color: darkblue;">
-						<h1 th:text="${subject.subject}" class="text-light"></h1>
+				<div class="row pt-1 justify-content-center">
+					<div class="col-sm-3" style="background-color: darkblue;">
+						<h3 th:text="${subject.subject}" class="text-light"></h3>
 					</div>
 					<div class="col-sm-3" style="background-color: darkblue;">
-						<h4 th:text="${grades}" class="text-light"></h4>
+						<h5 th:text="${grades}" class="text-light"></h3>
 					</div>
 					<div class="col-sm-5">
 						<form th:action="@{/call-select-grade}" method="post">
 							<input type="hidden" name="subjectId" th:value="${subject.id}">
-							<button type="submit" th:text="#{book}" style="font-size: 30px;" class="text-large text-light btn bg-primary rounded-pill"></button>
+							<button type="submit" th:text="#{book}" style="font-size: 20px;" class="text-large text-light btn bg-primary rounded-pill"></button>
 						</form>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col">
-						<a th:href="@{/exam-details/{id} (id = ${subject.id})}" th:text="#{exam-details-link}" style="font-size: 30px;"></a>
+				<div class="row justify-content-center">
+					<div class="col-sm-11">
+						<a th:href="@{/exam-details/{id} (id = ${subject.id})}" th:text="#{exam-details-link}" style="font-size: 20px;" class="btn btn-success rounded-pill text-light"></a>
 					</div>
 				</div>
 			</div>

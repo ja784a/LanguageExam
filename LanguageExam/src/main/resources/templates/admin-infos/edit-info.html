@@ -39,11 +39,11 @@
 				</div>
 				<div class="row mb-3 mt-5 justify-content-end">
 					<div class="col-sm-3 col-6">
-						<a th:href="@{/admin-infos-for-admin}" th:text="#{back}"></a>
+						<a th:href="@{/admin-infos-for-admin}" th:text="#{back}" class="btn btn-primary rounded-pill text-light"></a>
 					</div>
 					<div class="col-sm-3 col-6">
 						<input type="hidden" th:field="*{id}">
-						<input type="submit" th:value="#{edit-info-btn}" class="btn btn-danger">
+						<input type="submit" th:value="#{edit-info-btn}" class="btn btn-danger rounded-pill">
 					</div>
 				</div>
 			</form>

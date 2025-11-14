@@ -14,7 +14,7 @@
 					<h3 class="pt-1" th:text="#{admin-exams}"></h3>
 				</div>
 				<div class="col-sm-3">
-					<a th:href="@{/add-exam-for-admin}" th:text="#{add-exam-btn}" class="btn btn-primary text-light"></a>
+					<a th:href="@{/add-exam-for-admin}" th:text="#{add-exam-btn}" class="btn btn-primary text-light rounded-pill"></a>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -29,10 +29,10 @@
 									<h5 th:text="${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')} + ' ' + ${examInfo.places.place}"></h5>
 								</div>
 								<div class="col-sm-2 col-6" th:if="${examInfo.cancel == 0}">
-									<a th:href="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" th:text="#{change-date-for-admin}" class="p-0 btn btn-primary text-lignt"></a>
+									<a th:href="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" th:text="#{change-exam-date-link}" class="p-0 btn btn-primary text-lignt"></a>
 								</div>
 								<div class="col-sm-2 col-6" th:if="${examInfo.cancel == 0}">
-									<a th:href="@{/cancel-exam-for-admin/{id} (id = ${examInfo.id})}" th:text="#{cancel-exam-for-admin}" class="p-0 btn btn-danger text-light"></a>
+									<a th:href="@{/cancel-exam-for-admin/{id} (id = ${examInfo.id})}" th:text="#{cancel-exam-link}" class="p-0 btn btn-danger text-light"></a>
 								</div>
 								<div class="col-4" th:if="${examInfo.cancel != 0}">
 									<h5 th:text="#{cancel-exam-for-admin}" class="text-danger text-end"></h5>

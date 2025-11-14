@@ -30,7 +30,8 @@
 								<div class="col-sm-2 col-6">
 									<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}">
 										<div style="display: flex;">
-											<div><input type="number" min="0" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
+											<div>
+												<input type="number" min="0" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
 												<div class="invalid-feedback" th:errors="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}"></div>
 											</div>
 											<div th:text="#{yen}"></div>
@@ -44,10 +45,10 @@
 				</div>
 				<div class="row justify-content-center m-3">
 					<div class="col-sm-3 col-6">
-						<a th:href="@{/admin-fees-for-admin}" th:text="#{back}"></a>
+						<a th:href="@{/admin-fees-for-admin}" th:text="#{back}" class="btn btn-primary rounded-pill text-light"></a>
 					</div>
 					<div class="col-sm-4 col-6">
-						<input type="submit" th:value="#{edit-fees-btn}" class="btn btn-danger">
+						<input type="submit" th:value="#{edit-fees-btn}" class="btn btn-danger rounded-pill">
 					</div>
 				</div>
 			</form>
