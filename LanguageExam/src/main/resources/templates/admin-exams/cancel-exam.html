@@ -8,55 +8,27 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{cancel-exam-for-admin-long}"></h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div th:text="#{cancel-exam-for-admin-msg}"></div>
-				</div>
-			</div>
+			<h3 th:text="#{cancel-exam-for-admin-long}"></h3>
+			<p th:text="#{cancel-exam-for-admin-msg}"></p>
 			<form th:action="@{/cancel-exam-for-admin/{id} (id = ${examInfo.id})}" method="post" th:object="${cancelExamFormForAdmin}">
-				<div class="row p-3 justify-content-center">
-					<div class="col-10 border border-dark" style="height: 200px;">
-						<div class="row mt-5 justify-content-center">
-							<div class="col-sm-3 col-6">
-								<h5 th:text="${examInfo.subjects.subject}"></h5>
-							</div>
-							<div class="col-sm-4 col-6">
-								<h5 th:text="${examInfo.grades.grade}"></h5>
-							</div>
-						</div>
-						<div class="row justify-content-center">
-							<div class="col-sm-7">
-								<h5 th:text="#{place} + ${examInfo.places.place}"></h5>
-							</div>
-						</div>
-						<div class="row justify-content-center">
-							<div class="col-sm-7">
-								<h5 th:text="#{exam-date} + ${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')}"></h5>
-							</div>
-						</div>
+				<div class="row mt-5 justify-content-center">
+					<div class="col-auto">
+						<h5 class="text-center" th:text="${examInfo.subjects.subject}"></h5>
 					</div>
-					<div class="row mt-3">
-						<div class="col">
-							<h6 th:text="#{comments}"></h6>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<textarea th:field="*{comments}" th:errorclass="is-invalid" class="col-10"></textarea>
-							<div class="invalid-feedback" th:errors="*{comments}"></div>
-						</div>
+					<div class="col-auto">
+						<h5 class="text-center" th:text="${examInfo.grades.grade}"></h5>
 					</div>
 				</div>
+				<h5 class="text-center" th:text="#{place} + ${examInfo.places.place}"></h5>
+				<h5 class="text-center" th:text="#{exam-date} + ${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')}"></h5>
+				<h6 th:text="#{comments}"></h6>
+				<textarea th:field="*{comments}" th:errorclass="is-invalid" class="col-10"></textarea>
+				<div class="invalid-feedback" th:errors="*{comments}"></div>
 				<div class="row m-3 justify-content-end">
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<a th:href="@{/admin-exams-for-admin}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<input type="hidden" th:field="*{id}">
 						<input type="submit" th:value="#{cancel-exam-for-admin-btn}" class="btn btn-danger rounded-pill">
 					</div>

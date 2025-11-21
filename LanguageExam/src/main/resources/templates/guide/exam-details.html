@@ -9,25 +9,21 @@
 	<div layout:fragment="content">
 		<div class="container">
 			<div class="row p-1">
-				<div class="col-3" style="background-color: darkblue;">
-					<h5 th:text="${subject.subject}" class="text-light"></h5>
+				<div class="col-auto" style="background-color: darkblue;">
+					<h3 th:text="${subject.subject}" class="text-light"></h3>
 				</div>
-				<div class="col-3" style="background-color: darkblue;">
-					<div th:text="${grades}" class="text-light"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-4">
-					<div th:text="#{place-date-fee}"></div>
+				<div class="col-auto" style="background-color: darkblue;">
+					<p th:text="${grades}" class="text-light"></p>
 				</div>
 			</div>
+			<div th:text="#{place-date-fee}"></div>
 			<div th:each="grade:${gradeList}" class="p-2">
 				<div class="row p-2">
 					<div class="col-1">
 						<h5 th:text="${grade.grade}"></h5>
 					</div>
 					<div class="col-4">
-						<div th:text="#{fee-msg}"></div>
+						<p th:text="#{fee-msg}"></p>
 					</div>
 				</div>
 				<div th:each="place : ${grade.placeList}">
@@ -35,18 +31,14 @@
 						<div class="col-4">
 							<details class="border border-dark">
 								<summary th:text="${place.place}" class="text-light" style="background-color: darkblue;"></summary>
-								<div th:each="date : ${place.examInfoList}" th:text="${#dates.format(date.examDate, 'yyyy年MM月dd日(E)')}"></div>
-								<div th:if="${place.examInfoList.size == 0}" th:text="#{no-exam-date-msg}"></div>
+								<p th:each="date : ${place.examInfoList}" th:text="${#dates.format(date.examDate, 'yyyy年MM月dd日(E)')}"></p>
+								<p th:if="${place.examInfoList.size == 0}" th:text="#{no-exam-date-msg}"></p>
 							</details>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row mt-3">
-				<div class="col">
-					<h6 th:text="#{fees}"></h6>
-				</div>
-			</div>
+			<h6 th:text="#{fees}"></h6>
 			<ul class="list-group d-flex flex-row" style="gap: 0;">
 				<li th:each="fee:${fees}" class="list-group-item border border-dark" style="background-color: darkblue; width:100px;">
 					<div th:text="${fee.grades.grade}" class="text-light m-1" ></div>
@@ -57,11 +49,7 @@
 					<div th:text="${fee.fee} + #{yen}" class="p-0 m-0"></div>
 				</li>
 			</ul>
-			<div class="row m-3">
-				<div class="col">
-					<a th:href="@{/}" th:text="#{back-exam-guide}" class="btn btn-secondary rounded-pill text-light"></a>
-				</div>
-			</div>
+			<a th:href="@{/}" th:text="#{back-exam-guide}" class="btn btn-secondary rounded-pill text-light mt-3 mb-5"></a>
 		</div>
 	</div>
 

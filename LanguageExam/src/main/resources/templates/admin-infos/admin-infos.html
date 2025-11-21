@@ -11,48 +11,30 @@
 	<div layout:fragment="content">
 		<div class="container">
 			<div class="row m-2 justify-content-center">
-				<div class="col-sm-7">
+				<div class="col-auto">
 					<h3 class="pt-1" th:text="#{admin-infos}"></h3>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-auto">
 					<a th:href="@{/add-info-for-admin}" th:text="#{add-info-btn}" class="btn btn-primary rounded-pill"></a>
 				</div>
 			</div>
-			<div class="row m-2 justify-content-center">
-				<div class="col-1l border border-dark" style="overflow-y: scroll; ">
-					<div th:if="${infos.size == 0}">
-						<div class="row justify-content-center">
-							<div class="col-5">
-								<div class="text-center m-5" th:text="#{no-infos-msg}"></div>
-							</div>
+			<p  th:if="${infos.size == 0}" class="text-center m-5" th:text="#{no-infos-msg}"></p>
+			<ul class="list-group mb-3">
+				<li th:each="info:${infos}" class="list-group-item border border-dark">
+					<div class="row mt-3">
+						<p th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></p>
+						<div class="col-sm-6">
+							<h5 th:text="${info.title}"></h5>
+						</div>
+						<div class="col-auto">
+							<a th:href="@{/edit-info-for-admin/{id} (id = ${info.id})}" th:text="#{edit-info}" class="btn btn-primary"></a>
+						</div>
+						<div class="col-auto">
+							<a th:href="@{/delete-info-for-admin/{id} (id = ${info.id})}" th:text="#{delete-info}" class="btn btn-danger"></a>
 						</div>
 					</div>
-					<ul class="list-group" style="height: 300px;">
-						<li th:each="info:${infos}" class="list-group-item border border-dark">
-							<div class="row mt-3">
-								<div class="col-sm-6">
-									<div class="row">
-										<div class="col">
-											<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
-										</div>
-									</div>
-									<dvi class="row">
-										<dvi class="col">
-											<h5 th:text="${info.title}"></h5>
-										</dvi>
-									</dvi>
-								</div>
-								<div class="col-sm-3 col-6">
-									<a th:href="@{/edit-info-for-admin/{id} (id = ${info.id})}" th:text="#{edit-info}" class="btn btn-primary"></a>
-								</div>
-								<div class="col-sm-3 col-6">
-									<a th:href="@{/delete-info-for-admin/{id} (id = ${info.id})}" th:text="#{delete-info}" class="btn btn-danger"></a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 

@@ -10,44 +10,36 @@
 	<div layout:fragment="content">
 		<div class="container">
 			<form th:action="@{/edit-fees-for-admin}" method="post" th:object="${feesListForm}">
-				<div class="row m-3 justify-content-center">
-					<div class="col-sm-5">
-						<h3 th:text="#{edit-fees}"></h3>
-					</div>
-				</div>
-				<div class="row m-3 justify-content-center">
-					<div class="border border-dark col-10">
-						<div th:each="subject, sStat:*{subjects}">
-							<div class="row mt-2 justify-content-center">
-								<div class="col-sm-4">
-									<h5 th:text="${subject.subject}"></h5>
-								</div>
-								<div class="col-sm-2 col-6">
-									<div th:each="grade:${subject.gradeList}">
-										<h6 th:text="${grade.grade}"></h6>
+				<h3 class="text-center" th:text="#{edit-fees}"></h3>
+				<div th:each="subject, sStat:*{subjects}">
+					<div class="row mt-2 justify-content-center">
+						<div class="col-sm-2 col-6">
+							<h5 th:text="${subject.subject}"></h5>
+						</div>
+						<div class="col-sm-2 col-6">
+							<h6 th:each="grade:${subject.gradeList}" th:text="${grade.grade}"></h6>
+						</div>
+						<div class="col-sm-3 col-6">
+							<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}">
+								<div class="row">
+									<div class="col-4">
+										<input type="number" min="0" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
+										<p class="invalid-feedback" th:errors="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}"></p>
+									</div>
+									<div class="col-3">
+										<p th:text="#{yen}"></p>
 									</div>
 								</div>
-								<div class="col-sm-2 col-6">
-									<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}">
-										<div style="display: flex;">
-											<div>
-												<input type="number" min="0" style="width: 80px;"th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}" th:errorclass="is-invalid">
-												<div class="invalid-feedback" th:errors="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.fee}"></div>
-											</div>
-											<div th:text="#{yen}"></div>
-										</div>
-										<input type="hidden" th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.id}">
-									</div>
-								</div>
+								<input type="hidden" th:field="*{subjects[__${sStat.index}__].gradeList[__${fStat.index}__].fees.id}">
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row justify-content-center m-3">
-					<div class="col-sm-3 col-6">
-						<a th:href="@{/admin-fees-for-admin}" th:text="#{back}" class="btn btn-primary rounded-pill text-light"></a>
+					<div class="col-auto">
+						<a th:href="@{/admin-fees-for-admin}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>
-					<div class="col-sm-4 col-6">
+					<div class="col-auto">
 						<input type="submit" th:value="#{edit-fees-btn}" class="btn btn-danger rounded-pill">
 					</div>
 				</div>

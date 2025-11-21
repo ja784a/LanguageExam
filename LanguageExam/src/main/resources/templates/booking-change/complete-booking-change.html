@@ -8,25 +8,9 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{complete-booking-change}"></h3>
-				</div>
-			</div>
-			<div class="row p-3 justify-content-center">
-				<div class="col-10 border border-dark" style="height: 300px; background-color: rgb(255, 255, 255);">
-					<div class="row mt-5 justify-content-center">
-						<div class="col-sm-5">
-							<h5 th:text="#{complete-booking-change-msg}" class="text-center"></h5>
-						</div>
-					</div>
-					<div class="row justify-content-center">
-						<div class="col-sm-4">
-							<div class="text-center"><a th:href="@{/exam-schedule}" th:text="#{exam-schedule-link}" class="btn btn-primary rounded-pill"></a></div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<h3 th:text="#{complete-booking-change}"></h3>
+			<p class="text-center mt-5" th:text="#{complete-booking-change-msg}"></p>
+			<div class="text-center"><a th:href="@{/exam-schedule}" th:text="#{exam-schedule-link}" class="btn btn-primary rounded-pill"></a></div>
 		</div>
 	</div>
 

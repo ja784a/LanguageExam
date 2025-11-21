@@ -8,26 +8,10 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="${info.title}"></h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
-				</div>
-			</div>
-			<div class="row p-3 justify-content-center">
-				<div class="col-10 border border-dark" style="height: 200px; background-color: rgb(255, 255, 255); overflow-y: scroll;">
-					<div th:text="${info.content}" style="white-space: pre-wrap;"></div>
-				</div>
-			</div>
-			<div class="row justify-content-end">
-				<div class="col-3">
-					<a href="javascript:history.back();" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
-				</div>
-			</div>
+			<h3 th:text="${info.title}"></h3>
+			<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
+			<div th:text="${info.content}" style="white-space: pre-wrap;"></div>
+			<a href="javascript:history.back();" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 		</div>
 	</div>
 

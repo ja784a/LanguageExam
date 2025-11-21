@@ -9,16 +9,8 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{change-exam-date-title}"></h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<h6 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade} + ' ' + ${examInfo.places.place} + ' ' + ${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')}"></h6>
-				</div>
-			</div>
+			<h3 th:text="#{change-exam-date-title}"></h3>
+			<h6 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade} + ' ' + ${examInfo.places.place} + ' ' + ${#dates.format(examInfo.examDate, 'yyyy年MM月dd日(E)')}"></h6>
 			<form th:action="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" method="post" th:object="${changeExamDateForm}">
 				<div class="row p-3">
 					<div class="col-sm-3 col-6">
@@ -29,19 +21,11 @@
 						<div class="invalid-feedback" th:errors="*{examDate}"></div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col">
-						<h6 th:text="#{comments}"></h6>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col mb-5">
-						<textarea th:field="*{comments}" th:errorclass="is-invalid" class="col-10"></textarea>
-						<div class="invalid-feedback" th:errors="*{comments}"></div>
-					</div>
-				</div>
+				<h6 th:text="#{comments}"></h6>
+				<textarea th:field="*{comments}" th:errorclass="is-invalid" class="col-10"></textarea>
+				<div class="invalid-feedback" th:errors="*{comments}"></div>
 				<div class="row mb-3 mt-5 justify-content-end">
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<a th:href="@{/admin-exams-for-admin}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>
 					<div class="col-sm-3 col-6">

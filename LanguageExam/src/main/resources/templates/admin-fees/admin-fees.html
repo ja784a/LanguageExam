@@ -13,28 +13,22 @@
 				<div class="col-sm-5">
 					<h3 th:text="#{admin-fees}"></h3>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-auto">
 					<a th:href="@{/edit-fees-for-admin}" th:text="#{edit-fees-btn}" class="btn btn-primary rounded-pill"></a>
 				</div>
 			</div>
-			<div class="row m-3 justify-content-center">
-				<div class="border border-dark col-10">
-					<div th:each="subject:${subjects}">
-						<div class="row mt-2 justify-content-center">
-							<div class="col-sm-4">
-								<h5 th:text="${subject.subject}"></h5>
-							</div>
-							<div class="col-sm-2 col-6">
-								<div th:each="grade:${subject.gradeList}">
-									<h6 th:text="${grade.grade}"></h6>
-								</div>
-							</div>
-							<div class="col-sm-3 col-6">
-								<div th:each="grade:${subject.gradeList}">
-									<h6 th:text="${grade.fees.fee} + #{yen}"></h6>
-								</div>
-							</div>
+			<div th:each="subject:${subjects}">
+				<div class="row mt-2 justify-content-center">
+					<div class="col-sm-4">
+						<h5 th:text="${subject.subject}"></h5>
+					</div>
+					<div class="col-sm-2 col-6">
+						<div th:each="grade:${subject.gradeList}">
+							<h6 th:text="${grade.grade}"></h6>
 						</div>
+					</div>
+					<div class="col-sm-3 col-6">
+						<h6 th:each="grade:${subject.gradeList}" th:text="${grade.fees.fee} + #{yen}"></h6>
 					</div>
 				</div>
 			</div>

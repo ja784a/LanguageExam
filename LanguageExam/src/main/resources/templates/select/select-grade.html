@@ -9,32 +9,20 @@
 	<div layout:fragment="content">
 		<div class="container">
 			<div class="row p-1">
-				<div class="col-sm-3 col-6" style="background-color: darkblue;">
-					<h5 th:text="${subject.subject}" class="text-light"></h5>
+				<div class="col-auto" style="background-color: darkblue;">
+					<h3 th:text="${subject.subject}" class="text-light"></h3>
 				</div>
-				<div class="col-sm-3 col-6" style="background-color: darkblue;">
-					<div class="text-light" th:text="${grades}"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3">
-					<h3 th:text="#{exam-book}"></h3>
+				<div class="col-auto" style="background-color: darkblue;">
+					<p class="text-light" th:text="${grades}"></p>
 				</div>
 			</div>
-			<div class="row p-2">
-				<div class="col-sm-3">
-					<div th:text="#{select-grade-msg}"></div>
-				</div>
-			</div>
+			<h3 th:text="#{exam-book}"></h3>
+			<div th:text="#{select-grade-msg}"></div>
 			<form th:action="@{/select-grade}" method="post" th:object="${selectGradeForm}">
-				<div class="row pt-2 pb-5">
-					<div class="col-3 mb-5">
-						<select th:field="*{gradeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
-							<option th:each="grade:${gradesList}" th:text="${grade.grade}" th:value="${grade.id}"></option>
-						</select>
-						<div class="invalid-feedback" th:errors="*{gradeId}"></div>
-					</div>
-				</div>
+				<select th:field="*{gradeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
+					<option th:each="grade:${gradesList}" th:text="${grade.grade}" th:value="${grade.id}"></option>
+				</select>
+				<p class="invalid-feedback" th:errors="*{gradeId}"></p>
 				<div class="row pb-3 justify-content-end mt-5">
 					<div class="col-sm-2 col-6">
 						<a th:href="@{/}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>

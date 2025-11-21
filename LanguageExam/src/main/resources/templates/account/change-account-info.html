@@ -9,13 +9,9 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{change-account-info}"></h3>
-				</div>
-			</div>
+			<h3 th:text="#{change-account-info}"></h3>
 			<form th:action="@{/change-account-info}" method="post" th:object="${changeAccountInfoForm}">
-				<div class="row p-3 justify-content-center">
+				<div class="row pt-3 justify-content-center">
 					<label th:text="#{name}" class="form-label col-sm-3 text-sm-end" for="name"></label>
 					<div class="col-sm-7">
 						<input type="text" th:field="*{name}" class="form-control" th:errorclass="is-invalid">
@@ -30,7 +26,7 @@
 					</div>
 				</div>
 				<div class="row pt-3 justify-content-center">
-					<label th:text="#{address}" class="form-label col-sm-3 text-sm-end"></label>
+					<label th:text="#{address}" class="form-label col-sm-3 text-end"></label>
 					<div class="col-sm-7"></div>
 				</div>
 				<div class="row pb-3 justify-content-center">
@@ -62,10 +58,10 @@
 					</div>
 				</div>
 				<div class="row p-2 justify-content-end">
-					<div class="col-sm-4 col-6">
+					<div class="col-auto">
 						<a th:href="@{/change-password}" th:text="#{change-password-link}" class="btn btn-primary rounded-pill"></a>
 					</div>
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<input type="submit" th:value="#{change-account-info-btn}" class="btn btn-danger text-light rounded-pill">
 					</div>
 				</div>

@@ -9,17 +9,13 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{add-exam}"></h3>
-				</div>
-			</div>
+			<h3 th:text="#{add-exam}"></h3>
 			<form th:action="@{/add-exam-for-admin}" method="post" th:object="${addExamInfoForm}">
 				<div class="row mt-3">
 					<div class="col-sm-2 col-6">
 						<h6 th:text="#{subject}"></h6>
 					</div>
-					<div class="col-3">
+					<div class="col-sm-2 col-6">
 						<select th:field="*{subjectId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="subject:${subjects}" th:value="${subject.id}" th:text="${subject.subject}"></option>
 						</select>
@@ -30,7 +26,7 @@
 					<div class="col-sm-2 col-6">
 						<h6 th:text="#{grade}"></h6>
 					</div>
-					<div class="col-3">
+					<div class="col-sm-2 col-6">
 						<select th:field="*{gradeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="grade:${grades}" th:value="${grade.id}" th:text="${grade.grade}"></option>
 						</select>
@@ -41,7 +37,7 @@
 					<div class="col-sm-2 col-6">
 						<h6 th:text="#{place}"></h6>
 					</div>
-					<div class="col-3">
+					<div class="col-sm-2 col-6">
 						<select th:field="*{placeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
 							<option th:each="place:${places}" th:value="${place.id}" th:text="${place.place}"></option>
 						</select>
@@ -58,17 +54,13 @@
 					</div>
 				</div>
 				<div th:if="${#fields.hasGlobalErrors()}">
-					<div class="row">
-						<div class="col">
-							<div th:each="error:${#fields.globalErrors()}" th:text="${error}" class="text-danger"></div>
-						</div>
-					</div>
+					<div th:each="error:${#fields.globalErrors()}" th:text="${error}" class="text-danger"></div>
 				</div>
 				<div class="row  m-3 justify-content-end mt-5">
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<a th:href="@{/admin-exams-for-admin}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<input type="submit" th:value="#{add-exam-btn}" class="btn btn-danger rounded-pill">
 					</div>
 				</div>

@@ -8,11 +8,7 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row p-1">
-				<div class="col-sm-3" style="background-color: darkblue;">
-					<h5 th:text="${subject}" class="text-light"></h5>
-				</div>
-			</div>
+			<h3 th:text="${subject}" class="text-light m-1 p-1" style="background-color: darkblue; width: 200px;"></h3>
 			<div class="row">
 				<div class="col-sm-3 col-6">
 					<h3 th:text="#{booking-change}"></h3>
@@ -21,25 +17,17 @@
 					<h4 th:text="#{grade} + ${grade}" class="text-end"></h4>
 				</div>
 			</div>
-			<div class="row p-2">
-				<div class="col-sm-3">
-					<div th:text="#{select-place-msg}"></div>
-				</div>
-			</div>
+			<div th:text="#{select-place-msg}"></div>
 			<form th:action="@{/change-place/{id} (id = ${examId})}" method="post" th:object="${selectPlaceForm}">
-				<div class="row pt-2 pb-5">
-					<div class="col-sm-3 mb-5">
-						<select th:field="*{placeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light">
-							<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
-						</select>
-						<div class="invalid-feedback" th:errors="*{placeId}"></div>
-					</div>
-				</div>
+				<select th:field="*{placeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light" style="width: 200px;">
+					<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
+				</select>
+				<p class="invalid-feedback" th:errors="*{placeId}"></p>
 				<div class="row pb-3 justify-content-end mt-5">
-					<div class="col-sm-3 col-6">
+					<div class="col-auto">
 						<a th:href="@{/exam-schedule}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>
-					<div class="col-sm-4 col-6">
+					<div class="col-auto">
 						<input type="hidden" th:field="*{subjectId}">
 						<input type="submit" th:value="#{change-exam-date-btn}" class="btn btn-primary rounded-pill">
 					</div>

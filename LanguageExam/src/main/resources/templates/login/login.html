@@ -9,17 +9,9 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{login}"></h3>
-				</div>
-			</div>
+			<h3 th:text="#{login}"></h3>
 			<form th:action="@{/login}" method="post">
-				<div class="mb-2 row justify-content-center">
-					<div class="col-sm-9">
-						<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="#{login-error}" class="text-danger text-center"></div>
-					</div>
-				</div>
+				<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="#{login-error}" class="text-danger text-center"></div>
 				<div class="row p-5 justify-content-center">
 					<label th:text="#{mail}" class="form-label col-sm-2 text-sm-end" for="mail"></label>
 					<div class="col-sm-7">

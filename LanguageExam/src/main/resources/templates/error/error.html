@@ -8,20 +8,8 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container" style="width: 700px;">
-			<div class="row">
-				<div class="col">
-					<h3 th:text="#{error}" class="text-danger"></h3>
-				</div>
-			</div>
-			<div class="p-3 justify-content-center">
-				<div class="border border-dark" style="width: 600px; height: 200px; background-color: darkgray;">
-					<div class="row mt-5 justify-content-center">
-						<div class="col-10">
-							<h5 th:text="#{error-msg}" class="text-danger text-center"></h5>
-						</div>
-					</div>
-				</div>
-			</div>
+			<h3 th:text="#{error}" class="text-danger"></h3>
+			<p class="text-center mt-5" th:text="#{error-msg}" class="text-danger text-center"></p>
 		</div>
 	</div>
 
