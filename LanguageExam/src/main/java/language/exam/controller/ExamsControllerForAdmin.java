@@ -67,11 +67,21 @@ public class ExamsControllerForAdmin {
 		
 		Page<ExamInfos> resultPage = new PageImpl<>(examInfos, pageable, allExams);
 		
+		int displayCount = 5;
+		
+		int startPage = Math.max(0, page - displayCount / 2);
+		
+		int endPage = Math.min(resultPage.getTotalPages() - 1, startPage + displayCount - 1);
+		
+		startPage = Math.max(0, endPage -displayCount + 1);
+		
 		if (page >= resultPage.getTotalPages() ||  page < 0) {
 			return "error/error";
 		} else {
 			model.addAttribute("examInfos", examInfos);
 			model.addAttribute("resultPage", resultPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
 		}
 		
 		return "admin-exams/admin-exams";

@@ -9,7 +9,7 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="row justify-content-center">
+			<div class="row">
 				<div class="col-sm-5">
 					<h3 class="pt-1" th:text="#{your-schedule}"></h3>
 				</div>
@@ -17,79 +17,76 @@
 					<p class="text-sm-end pt-2" th:text="#{today} + '    ' + ${#dates.format(today, 'yyyy年MM月dd日(E)')}"></p>
 				</div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-11 border border-dark" style="height: 200px; overflow-y: scroll; ">
-					<div th:if="${bookings.size == 0}">
-						<p th:text="#{no-exam-msg}" class="m-5"></p>
+			<div th:if="${bookings.size == 0}">
+				<p th:text="#{no-exam-msg}" class="m-5"></p>
+			</div>
+			<ul class="list-group" th:each="booking:${bookings}">
+				<li class="list-group-item">
+					<div th:if="${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} ge ${booking.examInfos.updatedDateTime}">
+						<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
 					</div>
-					<ul class="list-group" th:each="booking:${bookings}">
-						<li class="list-group-item border border-dark">
-							<div th:if="${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} ge ${booking.examInfos.updatedDateTime}">
+					<div th:if="${booking.examInfos.oldDate != null} and ${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} le ${booking.examInfos.updatedDateTime}">
+						<div class="row" style="background-color: rgb(255, 255, 255);">
+							<div class="col-4">
+								<h6 th:text="${#dates.format(booking.examInfos.oldDate, 'yyyy年MM月dd日(E)')}"></h6>
+							</div>
+							<div class="col-1">
+								<h6 th:text="'→'"></h6>
+							</div>
+							<div class="col-4">
 								<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
 							</div>
-							<div th:if="${booking.examInfos.oldDate != null} and ${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} le ${booking.examInfos.updatedDateTime}">
-								<div class="row" style="background-color: rgb(255, 255, 255);">
-									<div class="col-4">
-										<h6 th:text="${#dates.format(booking.examInfos.oldDate, 'yyyy年MM月dd日(E)')}"></h6>
-									</div>
-									<div class="col-1">
-										<h6 th:text="'→'"></h6>
-									</div>
-									<div class="col-4">
-										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
-									</div>
-									<div class="col-3">
-										<h6 th:text="#{date-change}" class="text-danger"></h6>
-									</div>
-								</div>
+							<div class="col-3">
+								<h6 th:text="#{date-change}" class="text-danger"></h6>
 							</div>
-							<div th:if="${booking.examInfos.cancel == 1}">
-								<div class="row" style="background-color: rgb(255, 255, 255);">
-									<div class="col-7">
-										<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
-									</div>
-									<div class="col-5">
-										<h6 th:text="#{exam-canceled}" class="text-danger"></h6>
-									</div>
-								</div>
+						</div>
+					</div>
+					<div th:if="${booking.examInfos.cancel == 1}">
+						<div class="row" style="background-color: rgb(255, 255, 255);">
+							<div class="col-7">
+								<h6 th:text="${#dates.format(booking.examInfos.examDate, 'yyyy年MM月dd日(E)')}"></h6>
 							</div>
-							<div th:if="${booking.examInfos.cancel == 0}">
-								<div class="row">
-									<div class="col-6">
-										<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
-									</div>
-									<div class="col-sm-4">
-										<a th:href="@{/change-place/{id} (id = ${booking.examId})}" th:text="#{change-booking}" class="p-0 btn btn-primary text-lignt"></a>
-									</div>
-		
-									<div class="col-sm-2">
-										<a th:href="@{/confirm-cancel-exam/{id} (id = ${booking.examId})}" th:text="#{cancel-exam}" class="p-0 btn btn-danger text-light"></a>
-									</div>
-								</div>
-								<div th:if="${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} le ${booking.examInfos.updatedDateTime}" th:text="${booking.examInfos.comments}" class="text-danger"></div>
+							<div class="col-5">
+								<h6 th:text="#{exam-canceled}" class="text-danger"></h6>
 							</div>
-							<div th:if="${booking.examInfos.cancel == 1}">
+						</div>
+					</div>
+					<div th:if="${booking.examInfos.cancel == 0}">
+						<div class="row">
+							<div class="col-6">
 								<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
-								<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
 							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="row pt-3 justify-content-center">
-					<div class="col-10">
-						<h3 th:text="#{infos}"></h3>
+							<div class="col-sm-4">
+								<a th:href="@{/change-place/{id} (id = ${booking.examId})}" th:text="#{change-booking}" class="p-0 btn btn-primary text-lignt"></a>
+							</div>
+							<div class="col-sm-2">
+								<a th:href="@{/confirm-cancel-exam/{id} (id = ${booking.examId})}" th:text="#{cancel-exam}" class="p-0 btn btn-danger text-light"></a>
+							</div>
+						</div>
+						<div th:if="${booking.examInfos.cancel == 0} and ${booking.insertedDateTime} le ${booking.examInfos.updatedDateTime}" th:text="${booking.examInfos.comments}" class="text-danger"></div>
 					</div>
-					<div th:if="${infos.size == 0}">
-						<p th:text="#{no-infos-msg}" class="text-center m-5"></p>
+					<div th:if="${booking.examInfos.cancel == 1}">
+						<h6 th:text="${booking.subjects.subject} + ' ' + ${booking.grades.grade} + ' ' + #{place} + ${booking.places.place}"></h6>
+						<div th:text="${booking.examInfos.comments}" class="text-danger"></div>
 					</div>
-					<ul class="list-group">
-						<li class="list-group-item" th:each="info:${infos}">
-							<p th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></p>
-							<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
-						</li>
-					</ul>
-				</div>
+				</li>
+			</ul>
+			<h3 th:text="#{infos}"></h3>
+			<div th:if="${infos.size == 0}">
+				<p th:text="#{no-infos-msg}" class="text-center m-5"></p>
 			</div>
+			<ul class="list-group mb-5">
+				<li class="list-group-item" th:each="info:${infos}">
+					<div class="row">
+						<div class="col-3">
+							<p th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></p>
+						</div>
+						<div class="col-9">
+							<a th:text="${info.title}" th:href="@{/info-details/{id} (id = ${info.id})}"></a>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 

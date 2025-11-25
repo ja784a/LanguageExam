@@ -17,7 +17,7 @@
 							<h5 th:text="${subject.subject}"></h5>
 						</div>
 						<div class="col-sm-2 col-6">
-							<h6 th:each="grade:${subject.gradeList}" th:text="${grade.grade}"></h6>
+							<h6 th:each="grade:${subject.gradeList}" class="m-3" th:text="${grade.grade}"></h6>
 						</div>
 						<div class="col-sm-3 col-6">
 							<div th:each="grade, fStat:*{subjects[__${sStat.index}__].gradeList}">
@@ -35,7 +35,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row justify-content-center m-3">
+				<div class="row justify-content-end m-5">
 					<div class="col-auto">
 						<a th:href="@{/admin-fees-for-admin}" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
 					</div>

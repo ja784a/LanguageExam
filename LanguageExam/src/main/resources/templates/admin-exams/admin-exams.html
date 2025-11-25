@@ -17,8 +17,8 @@
 					<a th:href="@{/add-exam-for-admin}" th:text="#{add-exam-btn}" class="btn btn-primary text-light rounded-pill"></a>
 				</div>
 			</div>
-			<ul class="list-group border border-dark">
-				<li class="mw-100 list-group-item border border-dark" th:each="examInfo, stat :${examInfos}">
+			<ul class="list-group">
+				<li class="list-group-item" th:each="examInfo, stat :${examInfos}">
 					<div class="row">
 						<div class="col-sm-4">
 							<h5 th:text="${examInfo.subjects.subject} + ' ' + ${examInfo.grades.grade}"></h5>
@@ -30,33 +30,35 @@
 							<a th:href="@{/change-exam-date-for-admin/{id} (id = ${examInfo.id})}" th:text="#{change-exam-date-link}" class="p-0 btn btn-primary text-lignt"></a>
 						</div>
 						<div class="col-sm-2 col-6" th:if="${examInfo.cancel == 0}">
-							<a th:href="@{/cancel-exam-for-admin/{id} (id = ${examInfo.id})}" th:text="#{cancel-exam-link}" class="p-0 btn btn-danger text-light"></a>
+							<a th:href="@{/cancel-exam-for-admin/{id} (id = ${examInfo.id})}" th:text="#{cancel-exam-link-for-admin}" class="p-0 btn btn-danger text-light"></a>
 						</div>
 						<div class="col-2" th:if="${examInfo.cancel != 0}">
-							<h5 th:text="#{cancel-exam-for-admin}" class="col-2 text-danger text-end"></h5>
+							<h5 th:text="#{cancel-exam-for-admin}" class="text-danger text-end"></h5>
 						</div>
 						<div th:text="${examInfo.comments}" class="text-danger"></div>
 					</div>
 				</li>
 			</ul>
-			<ul class="pagination">
-				<li class="page-item" th:if="${resultPage.hasPrevious}">
-					<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number} - 1)}" th:text="#{before}"></a>
-				</li>
-				<li class="page-item"  th:each="i:${#numbers.sequence(0, resultPage.totalPages - 1)}">
-					<span th:if="${i == resultPage.number}">
-						<span class="page-link disabled" th:text="${i + 1}"></span>
-					</span>
-					<div th:if="${i != resultPage.number}">
-						<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${i})}">
-							<span th:text="${i + 1}"></span>
-						</a>
-					</div>
-				</li>
-				<li class="page-item" th:if="${resultPage.hasNext}">
-					<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number} + 1)}" th:text="#{next}"></a>
-				</li>
-			</ul>
+			<div class="d-flex justify-content-center mb-5">
+				<ul class="pagination">
+					<li class="page-item" th:if="${resultPage.hasPrevious}">
+						<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number} - 1)}" th:text="#{before}"></a>
+					</li>
+					<li class="page-item"  th:each="i:${#numbers.sequence(startPage, endPage)}">
+						<span th:if="${i == resultPage.number}">
+							<span class="page-link disabled" th:text="${i + 1}"></span>
+						</span>
+						<div th:if="${i != resultPage.number}">
+							<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${i})}">
+								<span th:text="${i + 1}"></span>
+							</a>
+						</div>
+					</li>
+					<li class="page-item" th:if="${resultPage.hasNext}">
+						<a class="page-link" th:href="@{/admin-exams-for-admin(page = ${resultPage.number} + 1)}" th:text="#{next}"></a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 

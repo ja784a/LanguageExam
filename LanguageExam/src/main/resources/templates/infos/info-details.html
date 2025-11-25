@@ -10,8 +10,10 @@
 		<div class="container">
 			<h3 th:text="${info.title}"></h3>
 			<div th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></div>
-			<div th:text="${info.content}" style="white-space: pre-wrap;"></div>
-			<a href="javascript:history.back();" th:text="#{back}" class="btn btn-secondary rounded-pill text-light"></a>
+			<div th:text="${info.content}" style="white-space: pre-wrap;" class="m-5"></div>
+			<div class="text-end">
+				<a href="javascript:history.back();" th:text="#{back}" class="btn btn-secondary rounded-pill m-5 text-light"></a>
+			</div>
 		</div>
 	</div>
 

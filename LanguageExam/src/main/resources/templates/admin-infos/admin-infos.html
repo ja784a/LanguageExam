@@ -20,7 +20,7 @@
 			</div>
 			<p  th:if="${infos.size == 0}" class="text-center m-5" th:text="#{no-infos-msg}"></p>
 			<ul class="list-group mb-3">
-				<li th:each="info:${infos}" class="list-group-item border border-dark">
+				<li th:each="info:${infos}" class="list-group-item">
 					<div class="row mt-3">
 						<p th:text="${#dates.format(info.postDate, 'yyyy年MM月dd日(E)')}"></p>
 						<div class="col-sm-6">

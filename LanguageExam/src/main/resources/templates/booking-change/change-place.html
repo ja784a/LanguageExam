@@ -17,7 +17,7 @@
 					<h4 th:text="#{grade} + ${grade}" class="text-end"></h4>
 				</div>
 			</div>
-			<div th:text="#{select-place-msg}"></div>
+			<p th:text="#{select-place-msg}"></p>
 			<form th:action="@{/change-place/{id} (id = ${examId})}" method="post" th:object="${selectPlaceForm}">
 				<select th:field="*{placeId}" th:errorclass="is-invalid" class="form-select bg-secondary text-light" style="width: 200px;">
 					<option th:each="place:${places}" th:text="${place.place}" th:value="${place.id}"></option>
