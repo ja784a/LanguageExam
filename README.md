@@ -1,6 +1,10 @@
 # LanguageExam
 本アプリケーションは就職活動のポートフォリオとして制作した外国語試験予約サイト（ダミー）です。<br>
 受験者が試験を予約したり、管理者がサイトの設定を行うことを想定して作成しました。<br>
+
+# デモ動画
+https://github.com/user-attachments/assets/2393e163-3a19-4a3d-88a6-8d8d503dcc0d
+
 # 本アプリケーションを実行いただく前に
 ・プロジェクトに同梱のschema.sql(LanguageExam/src/main/resources/schema.sql)、およびdata.sql(LanguageExam/src/main/resources/data.sql)を実行して必要なデータを追加してください。<br>
 ・本アプリケーションはdata.sqlのマスターデータの組み合わせで動作することを想定しています。<br>
